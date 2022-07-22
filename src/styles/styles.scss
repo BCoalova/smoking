@@ -1,0 +1,30 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth;
+}
+body {
+    margin: 0;
+}
+html::-webkit-scrollbar {
+    width: 12px;
+}
+html::-webkit-scrollbar-track {
+    background: hsl(29, 94%, 8%);
+}
+html::-webkit-scrollbar-thumb {
+    background: hsl(216, 94%, 15%);
+}
+html::-webkit-scrollbar-thumb:hover {
+    background: hsl(216, 94%, 15%);
+}
+html::-webkit-scrollbar-thumb:active {
+    background: hsl(216, 94%, 15%);
+}
+html {
+    scrollbar-color: hsl(216, 94%, 15%) hsl(143, 17%, 90%);
+    scrollbar-width: thin;
+}
