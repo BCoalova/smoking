@@ -1,12 +1,15 @@
 {
+    "homepage": "https://BCoalova.github.io/smoking",
     "name": "smoking",
     "private": true,
-    "version": "0.0.0",
+    "version": "1.0.0",
     "type": "module",
     "scripts": {
         "dev": "vite",
         "build": "vite build",
-        "preview": "vite preview"
+        "preview": "vite preview",
+        "predeploy": "npm run build",
+        "deploy": "gh-pages -d build"
     },
     "dependencies": {
         "@emotion/react": "^11.9.3",
@@ -33,6 +36,7 @@
         "eslint-plugin-prettier": "^4.0.0",
         "eslint-plugin-react": "^7.30.0",
         "eslint-plugin-react-hooks": "^4.5.0",
+        "gh-pages": "^4.0.0",
         "prettier": "^2.6.2",
         "sass": "^1.53.0",
         "vite": "^3.0.0"
