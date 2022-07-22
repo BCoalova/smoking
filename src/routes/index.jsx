@@ -13,7 +13,7 @@ export default function App() {
     return (
         <ThemeProvider theme={isLight ? themeLight : themeDark}>
             <Layout>
-                <Router>
+                <Router basename='/smoking'>
                     <Routes>
                         <Route
                             path='/'
