@@ -15,6 +15,7 @@ export default function Login() {
         try {
             await login()
         } catch (err) {
+            // eslint-disable-next-line no-undef
             console.log(err)
             setError('Ups hubo un problema, vuelve a intentarlo')
         } finally {
