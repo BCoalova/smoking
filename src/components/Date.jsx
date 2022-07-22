@@ -1,6 +1,6 @@
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
-import { Box, IconButton } from '@mui/material'
+import { Box, IconButton, useMediaQuery } from '@mui/material'
 import Divider from '@mui/material/Divider'
 import Paper from '@mui/material/Paper'
 import Stack from '@mui/material/Stack'
@@ -12,10 +12,11 @@ import convertTimeStampToDate from '../helpers/timeStampToDate'
 
 export default function DateComp() {
     const { userData, viewing, addAndChangeViewingDay, removeAndChangeViewingDay } = useGlobalContext()
+    const matches = useMediaQuery('(min-width:600px)')
 
     return (
         viewing && (
-            <Stack gap={1} alignItems='flex-start' sx={{ position: 'relative' }}>
+            <Stack gap={1} alignItems={matches ? 'flex-start' : 'stretch'} sx={{ position: 'relative' }}>
                 <Paper sx={{ py: 4, px: 6, position: 'relative' }}>
                     <Box sx={{ position: 'absolute', top: '50%', left: 2, transform: 'translateY(-50%)' }}>
                         <IconButton
@@ -30,11 +31,13 @@ export default function DateComp() {
                             <ChevronRightIcon />
                         </IconButton>
                     </Box>
-                    <Stack alignItems='center' gap={1}>
+                    <Stack alignItems='center' gap={1} direction={matches ? 'column' : 'row'}>
                         {viewing?.day?.split('-').map((field, index, array) => (
                             <React.Fragment key={`${field}-${index}`}>
                                 <Typography variant='h4'>{field}</Typography>
-                                {array.length - 1 !== index && <Divider flexItem />}
+                                {array.length - 1 !== index && (
+                                    <Divider flexItem orientation={matches ? 'horizontal' : 'vertical'} />
+                                )}
                             </React.Fragment>
                         ))}
                     </Stack>
