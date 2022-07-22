@@ -14,7 +14,12 @@ export default function Objective() {
 
     return (
         <Stack gap={2} pt={2}>
-            <Typography variant='h3'>Objetivo diario</Typography>
+            <Typography variant='h3'>
+                Objetivo diario:{' '}
+                <Box component='span' sx={{ fontWeight: 900 }}>
+                    {viewing && viewing.dayObjective}
+                </Box>
+            </Typography>
             <Stack direction='row' gap={0.5} sx={{ width: '100%' }}>
                 <Box sx={{ flexGrow: 1 }}>
                     <TextField size='small' fullWidth {...bind} type='number' />
