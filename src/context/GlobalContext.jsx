@@ -19,7 +19,7 @@ const useGlobalContext = () => {
 }
 
 const GlobalProvider = ({ children }) => {
-    const [isLight, , , toggleTheme] = useDarkMode(true)
+    const [isLight] = useDarkMode(false)
     const [currentUser, setCurrentUser] = useState(null)
     const [loadingUser, loadingFalse] = useBoolean(true)
     const [userData, setUserData] = useState(null)

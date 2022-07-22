@@ -4,6 +4,7 @@ import GlobalProvider from './context/GlobalContext'
 import App from './routes'
 import './styles/styles.scss'
 
+// eslint-disable-next-line no-undef
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
         <GlobalProvider>

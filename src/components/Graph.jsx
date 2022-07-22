@@ -1,7 +1,7 @@
 import { Paper } from '@mui/material'
-import { useGlobalContext } from '../context/GlobalContext'
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js'
+import { BarElement, CategoryScale, Chart as ChartJS, LinearScale, Tooltip } from 'chart.js'
 import { Bar } from 'react-chartjs-2'
+import { useGlobalContext } from '../context/GlobalContext'
 
 const options = {
     responsive: true,
