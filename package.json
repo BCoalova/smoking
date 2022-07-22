@@ -1,12 +1,12 @@
 {
-    "homepage": "https://BCoalova.github.io/smoking",
+    "homepage": "https://bcoalova.github.io/smoking",
     "name": "smoking",
     "private": true,
     "version": "1.0.0",
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build",
+        "build": "vite build --base=./",
         "preview": "vite preview",
         "predeploy": "npm run build",
         "deploy": "gh-pages -d build"
