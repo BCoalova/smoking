@@ -17,7 +17,7 @@ export default function DateComp() {
     return (
         viewing && (
             <Stack gap={1} alignItems={matches ? 'flex-start' : 'stretch'} sx={{ position: 'relative' }}>
-                <Paper sx={{ py: 4, px: 6, position: 'relative' }}>
+                <Paper sx={{ py: 4, px: 6, position: 'relative', display: 'flex', justifyContent: 'center' }}>
                     <Box sx={{ position: 'absolute', top: '50%', left: 2, transform: 'translateY(-50%)' }}>
                         <IconButton
                             disabled={viewing.day === format(convertTimeStampToDate(userData?.createdTime), 'dd-MM-yyyy')}
