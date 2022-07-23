@@ -109,12 +109,13 @@ const GlobalProvider = ({ children }) => {
     const addAndChangeViewingDay = async current => {
         let currentWithSlash = current.split('-').reverse()
         let plusOneDay = addDays(new Date(currentWithSlash), 1)
-        setDoesThisWork('formatedPlusOneDay')
         let formatedPlusOneDay = format(plusOneDay, 'dd-MM-yyyy')
 
         if (userData.data[formatedPlusOneDay]) {
+            setDoesThisWork('formatedPlusOneDay')
             return setViewing(userData.data[formatedPlusOneDay])
         }
+        setDoesThisWork('formatedPlusOneDay')
 
         let document = doc(db, 'users', currentUser.uid)
         let dataDotDay = `data.${formatedPlusOneDay}`
