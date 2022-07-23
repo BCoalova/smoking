@@ -23,17 +23,12 @@ export default function DateComp() {
                             sx={{ cursor: 'pointer' }}
                             disabled={viewing.day === format(convertTimeStampToDate(userData?.createdTime), 'dd-MM-yyyy')}
                             onClick={() => removeAndChangeViewingDay(viewing.day)}
-                            onTouchStart={() => removeAndChangeViewingDay(viewing.day)}
                         >
                             <ChevronLeftIcon />
                         </IconButton>
                     </Box>
                     <Box sx={{ position: 'absolute', top: '50%', right: 2, transform: 'translateY(-50%)' }}>
-                        <IconButton
-                            sx={{ cursor: 'pointer' }}
-                            onClick={() => addAndChangeViewingDay(viewing.day)}
-                            onTouchStart={() => addAndChangeViewingDay(viewing.day)}
-                        >
+                        <IconButton sx={{ cursor: 'pointer' }} onClick={() => addAndChangeViewingDay(viewing.day)}>
                             <ChevronRightIcon />
                         </IconButton>
                     </Box>
