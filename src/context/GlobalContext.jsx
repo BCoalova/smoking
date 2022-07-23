@@ -104,20 +104,14 @@ const GlobalProvider = ({ children }) => {
     }, [currentUser, userData, viewing])
 
     /* ADD ONE DAY, AND CHANGE VIEWING TO THAT DATE */
-    const [doesThisWork, setDoesThisWork] = useState('')
-
     const addAndChangeViewingDay = async current => {
         let currentWithSlash = current.split('-').reverse()
         let plusOneDay = addDays(new Date(currentWithSlash), 1)
-        setDoesThisWork('before format')
         let formatedPlusOneDay = format(plusOneDay, 'dd-MM-yyyy')
 
-        setDoesThisWork('before if')
         if (userData.data[formatedPlusOneDay]) {
-            setDoesThisWork('inside if')
             return setViewing(userData.data[formatedPlusOneDay])
         }
-        setDoesThisWork('after if')
 
         let document = doc(db, 'users', currentUser.uid)
         let dataDotDay = `data.${formatedPlusOneDay}`
@@ -200,8 +194,6 @@ const GlobalProvider = ({ children }) => {
 
         addAndChangeViewingDay,
         removeAndChangeViewingDay,
-
-        doesThisWork,
     }
 
     return <Provider value={value}>{children}</Provider>
