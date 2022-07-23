@@ -1,6 +1,6 @@
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
-import { Box, IconButton, useMediaQuery } from '@mui/material'
+import { Box, Button, /* IconButton, */ useMediaQuery } from '@mui/material'
 import Divider from '@mui/material/Divider'
 import Paper from '@mui/material/Paper'
 import Stack from '@mui/material/Stack'
@@ -19,18 +19,23 @@ export default function DateComp() {
             <Stack gap={1} alignItems={matches ? 'flex-start' : 'stretch'} sx={{ position: 'relative' }}>
                 <Paper sx={{ py: 4, px: 6, position: 'relative', display: 'flex', justifyContent: 'center' }}>
                     <Box sx={{ position: 'absolute', top: '50%', left: 2, transform: 'translateY(-50%)' }}>
-                        <IconButton
-                            sx={{ cursor: 'pointer' }}
+                        <Button
+                            size='small'
+                            sx={{ cursor: 'pointer', minWidth: 12 }}
                             disabled={viewing.day === format(convertTimeStampToDate(userData?.createdTime), 'dd-MM-yyyy')}
                             onClick={() => removeAndChangeViewingDay(viewing.day)}
                         >
                             <ChevronLeftIcon />
-                        </IconButton>
+                        </Button>
                     </Box>
                     <Box sx={{ position: 'absolute', top: '50%', right: 2, transform: 'translateY(-50%)' }}>
-                        <IconButton sx={{ cursor: 'pointer' }} onClick={() => addAndChangeViewingDay(viewing.day)}>
+                        <Button
+                            size='small'
+                            sx={{ cursor: 'pointer', minWidth: 12 }}
+                            onClick={() => addAndChangeViewingDay(viewing.day)}
+                        >
                             <ChevronRightIcon />
-                        </IconButton>
+                        </Button>
                     </Box>
                     <Stack alignItems='center' gap={1} direction={matches ? 'column' : 'row'}>
                         {viewing?.day?.split('-').map((field, index, array) => (
