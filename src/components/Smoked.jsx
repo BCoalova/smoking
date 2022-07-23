@@ -9,7 +9,9 @@ export default function Smoked() {
     return (
         viewing && (
             <Stack direction='row' gap={1} justifyContent='space-between'>
-                <Typography variant='h4'>Fumados: </Typography>
+                <Typography variant='h4' sx={{ display: 'grid', placeContent: 'center', lineHeight: 1 }}>
+                    Fumados:{' '}
+                </Typography>
                 <Stack direction='row' alignItems='center' gap={1}>
                     <IconButton size='large'>
                         <RemoveCircleOutlineOutlinedIcon fontSize='large' />
