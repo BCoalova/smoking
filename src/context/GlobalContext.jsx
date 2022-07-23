@@ -109,6 +109,7 @@ const GlobalProvider = ({ children }) => {
     const addAndChangeViewingDay = async current => {
         let currentWithSlash = current.split('-').reverse()
         let plusOneDay = addDays(new Date(currentWithSlash), 1)
+        setDoesThisWork('before format')
         let formatedPlusOneDay = format(plusOneDay, 'dd-MM-yyyy')
 
         setDoesThisWork('before if')
