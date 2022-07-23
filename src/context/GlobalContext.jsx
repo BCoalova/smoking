@@ -105,16 +105,34 @@ const GlobalProvider = ({ children }) => {
 
     /* ADD ONE DAY, AND CHANGE VIEWING TO THAT DATE */
     const addAndChangeViewingDay = async current => {
+        console.log('entrando en la función')
+        console.log('current')
+        console.log(current)
         let currentWithSlash = current.split('-').reverse()
+        console.log('despues de let currentWithSlash = current.split("-").reverse()')
+        console.log('currentWithSlash')
+        console.log(currentWithSlash)
         let plusOneDay = addDays(new Date(currentWithSlash), 1)
+        console.log('despues de let plusOneDay = addDays(new Date(currentWithSlash), 1)')
+        console.log('plusOneDay')
+        console.log(plusOneDay)
         let formatedPlusOneDay = format(plusOneDay, 'dd-MM-yyyy')
+        console.log('despues de let formatedPlusOneDay = format(plusOneDay, dd-MM-yyyy)')
+        console.log('formatedPlusOneDay')
+        console.log(formatedPlusOneDay)
 
         if (userData.data[formatedPlusOneDay]) {
+            console.log('adentro del if')
+            console.log('userData.data[formatedPlusOneDay]')
+            console.log(userData.data[formatedPlusOneDay])
             return setViewing(userData.data[formatedPlusOneDay])
         }
 
         let document = doc(db, 'users', currentUser.uid)
         let dataDotDay = `data.${formatedPlusOneDay}`
+        console.log('afuera del if')
+        console.log('dataDotDay')
+        console.log(dataDotDay)
 
         setViewing({
             count: 0,
@@ -138,9 +156,21 @@ const GlobalProvider = ({ children }) => {
 
     /* SUBSTRACT ONE DAY, AND CHANGE VIEWING TO THAT DATE */
     const removeAndChangeViewingDay = async current => {
+        console.log('entrando en la función')
+        console.log('current')
+        console.log(current)
         let currentWithSlash = current.split('-').reverse()
+        console.log('despues de let currentWithSlash = current.split("-").reverse()')
+        console.log('currentWithSlash')
+        console.log(currentWithSlash)
         let subOneDay = subDays(new Date(currentWithSlash), 1)
+        console.log('despues de let subOneDay = subDays(new Date(currentWithSlash), 1)')
+        console.log('subOneDay')
+        console.log(subOneDay)
         let formatedPlusOneDay = format(subOneDay, 'dd-MM-yyyy')
+        console.log('despues de let formatedPlusOneDay = format(subOneDay, "dd-MM-yyyy")')
+        console.log('formatedPlusOneDay')
+        console.log(formatedPlusOneDay)
         setViewing(userData.data[formatedPlusOneDay])
     }
 
