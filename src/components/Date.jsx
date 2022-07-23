@@ -20,14 +20,20 @@ export default function DateComp() {
                 <Paper sx={{ py: 4, px: 6, position: 'relative', display: 'flex', justifyContent: 'center' }}>
                     <Box sx={{ position: 'absolute', top: '50%', left: 2, transform: 'translateY(-50%)' }}>
                         <IconButton
+                            sx={{ cursor: 'pointer' }}
                             disabled={viewing.day === format(convertTimeStampToDate(userData?.createdTime), 'dd-MM-yyyy')}
                             onClick={() => removeAndChangeViewingDay(viewing.day)}
+                            onTouchStart={() => removeAndChangeViewingDay(viewing.day)}
                         >
                             <ChevronLeftIcon />
                         </IconButton>
                     </Box>
                     <Box sx={{ position: 'absolute', top: '50%', right: 2, transform: 'translateY(-50%)' }}>
-                        <IconButton onClick={() => addAndChangeViewingDay(viewing.day)}>
+                        <IconButton
+                            sx={{ cursor: 'pointer' }}
+                            onClick={() => addAndChangeViewingDay(viewing.day)}
+                            onTouchStart={() => addAndChangeViewingDay(viewing.day)}
+                        >
                             <ChevronRightIcon />
                         </IconButton>
                     </Box>
