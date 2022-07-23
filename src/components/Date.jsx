@@ -11,7 +11,7 @@ import { useGlobalContext } from '../context/GlobalContext'
 import convertTimeStampToDate from '../helpers/timeStampToDate'
 
 export default function DateComp() {
-    const { userData, viewing, addAndChangeViewingDay, removeAndChangeViewingDay } = useGlobalContext()
+    const { userData, viewing, addAndChangeViewingDay, removeAndChangeViewingDay, doesThisWork } = useGlobalContext()
     const matches = useMediaQuery('(min-width:600px)')
 
     return (
@@ -38,6 +38,7 @@ export default function DateComp() {
                         </Button>
                     </Box>
                     <Stack alignItems='center' gap={1} direction={matches ? 'column' : 'row'}>
+                        {doesThisWork}
                         {viewing?.day?.split('-').map((field, index, array) => (
                             <React.Fragment key={`${field}-${index}`}>
                                 <Typography variant='h4'>{field}</Typography>
