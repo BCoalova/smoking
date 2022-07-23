@@ -112,10 +112,10 @@ const GlobalProvider = ({ children }) => {
         let formatedPlusOneDay = format(plusOneDay, 'dd-MM-yyyy')
 
         if (userData.data[formatedPlusOneDay]) {
-            setDoesThisWork('formatedPlusOneDay')
+            setDoesThisWork('inside if')
             return setViewing(userData.data[formatedPlusOneDay])
         }
-        setDoesThisWork('formatedPlusOneDay')
+        setDoesThisWork('outside if')
 
         let document = doc(db, 'users', currentUser.uid)
         let dataDotDay = `data.${formatedPlusOneDay}`
