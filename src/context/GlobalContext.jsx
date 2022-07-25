@@ -180,6 +180,24 @@ const GlobalProvider = ({ children }) => {
         setViewing(current => ({ ...current, count: current.count + 1 }))
     }
 
+    const removeCigarette = async current => {
+        let day = current.day
+        let count = current.count
+        let dataDotDay = `data.${day}.count`
+
+        let document = doc(db, 'users', currentUser.uid)
+        try {
+            await updateDoc(document, {
+                [dataDotDay]: count - 1,
+            })
+        } catch (err) {
+            // eslint-disable-next-line no-undef
+            console.log(err)
+        }
+
+        setViewing(current => ({ ...current, count: current.count - 1 }))
+    }
+
     const value = {
         userData,
         isLight,
@@ -191,6 +209,7 @@ const GlobalProvider = ({ children }) => {
 
         setDayObjective,
         addCigarette,
+        removeCigarette,
 
         addAndChangeViewingDay,
         removeAndChangeViewingDay,

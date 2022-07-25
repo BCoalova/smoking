@@ -4,7 +4,7 @@ import RemoveCircleOutlineOutlinedIcon from '@mui/icons-material/RemoveCircleOut
 import { useGlobalContext } from '../context/GlobalContext'
 
 export default function Smoked() {
-    const { addCigarette, viewing } = useGlobalContext()
+    const { addCigarette, viewing, removeCigarette } = useGlobalContext()
 
     return (
         viewing && (
@@ -13,7 +13,7 @@ export default function Smoked() {
                     Fumados:{' '}
                 </Typography>
                 <Stack direction='row' alignItems='center' gap={1}>
-                    <IconButton size='large'>
+                    <IconButton size='large' onClick={() => removeCigarette(viewing)}>
                         <RemoveCircleOutlineOutlinedIcon fontSize='large' />
                     </IconButton>
                     <Typography variant='h4'>{viewing.count}</Typography>
