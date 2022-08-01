@@ -6,14 +6,16 @@ import { themeDark, themeLight } from '../styles/theme'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Login from '../Pages/Login'
 import PrivateRoute from './utils'
+import WeekSummary from '../Pages/WeekSummary'
+import Profile from '../Pages/Profile'
 
 export default function App() {
     const { isLight } = useGlobalContext()
 
     return (
         <ThemeProvider theme={isLight ? themeLight : themeDark}>
-            <Layout>
-                <Router basename='/smoking'>
+            <Router basename='/smoking'>
+                <Layout>
                     <Routes>
                         <Route
                             path='/'
@@ -23,10 +25,26 @@ export default function App() {
                                 </PrivateRoute>
                             }
                         />
+                        <Route
+                            path='/profile'
+                            element={
+                                <PrivateRoute>
+                                    <Profile />
+                                </PrivateRoute>
+                            }
+                        />
+                        <Route
+                            path='/week-summary'
+                            element={
+                                <PrivateRoute>
+                                    <WeekSummary />
+                                </PrivateRoute>
+                            }
+                        />
                         <Route path='/login' element={<Login />} />
                     </Routes>
-                </Router>
-            </Layout>
+                </Layout>
+            </Router>
         </ThemeProvider>
     )
 }

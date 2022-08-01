@@ -1,18 +1,23 @@
 import AddIcon from '@mui/icons-material/Add'
+import BarChartIcon from '@mui/icons-material/BarChart'
+import HomeIcon from '@mui/icons-material/Home'
 import LogoutIcon from '@mui/icons-material/Logout'
+import MenuIcon from '@mui/icons-material/Menu'
+import SmokeFreeIcon from '@mui/icons-material/SmokeFree'
+import { Menu, MenuItem } from '@mui/material'
 import AppBar from '@mui/material/AppBar'
+import Avatar from '@mui/material/Avatar'
 import Box from '@mui/material/Box'
 import Fab from '@mui/material/Fab'
-import Snackbar from '@mui/material/Snackbar'
 import IconButton from '@mui/material/IconButton'
+import Snackbar from '@mui/material/Snackbar'
 import { styled } from '@mui/material/styles'
 import Toolbar from '@mui/material/Toolbar'
-import { useGlobalContext } from '../../context/GlobalContext'
-import { useState } from 'react'
-import Avatar from '@mui/material/Avatar'
-import Tooltip from '@mui/material/Tooltip'
-import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
+import { useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import { useGlobalContext } from '../../context/GlobalContext'
+import useMuiMenu from '../../hooks/useMuiMenu'
 
 const StyledFab = styled(Fab)({
     position: 'absolute',
@@ -24,8 +29,10 @@ const StyledFab = styled(Fab)({
 })
 
 export default function Nav() {
+    let { pathname } = useLocation()
     const { currentUser, logOut, addCigarette, viewing } = useGlobalContext()
     const [error, setError] = useState('')
+    const [anchorEl, open, handleClick, handleClose] = useMuiMenu()
 
     async function logOutHandler() {
         try {
@@ -35,35 +42,90 @@ export default function Nav() {
         }
     }
 
-    function handleClose() {
+    function closeError() {
         setError('')
     }
 
     return (
-        currentUser && (
-            <AppBar position='fixed' color='primary' sx={{ top: 'auto', bottom: 0 }}>
-                <Toolbar>
-                    <Tooltip
-                        title={
-                            <Stack>
-                                <Typography variant='caption'>{currentUser.displayName}</Typography>
-                                <Typography variant='caption'>{currentUser.email}</Typography>
-                            </Stack>
-                        }
-                        arrow
-                    >
-                        <Avatar alt='Remy Sharp' src={currentUser.photoURL} />
-                    </Tooltip>
-                    <StyledFab color='secondary' aria-label='add' onClick={() => addCigarette(viewing)}>
+        <AppBar position='fixed' color='primary' sx={{ top: 'auto', bottom: 0 }}>
+            <Toolbar sx={{ gap: 1, alignItems: 'center' }}>
+                <IconButton color='secondary' component={Link} to='/'>
+                    <SmokeFreeIcon />
+                </IconButton>
+                <Typography variant='h6' fontWeight={900} color='secondary.main'>
+                    Stop smoking
+                </Typography>
+                <Snackbar open={!!error} autoHideDuration={6000} onClose={closeError} message={error} />
+                <Box sx={{ flexGrow: 1 }} />
+                <IconButton size='large' edge='start' color='inherit' aria-label='menu' onClick={handleClick}>
+                    <MenuIcon />
+                </IconButton>
+                <Menu
+                    id='basic-menu'
+                    anchorEl={anchorEl}
+                    open={open}
+                    onClose={handleClose}
+                    MenuListProps={{
+                        'aria-labelledby': 'basic-button',
+                    }}
+                    anchorOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                    }}
+                    transformOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'right',
+                    }}
+                    PaperProps={{
+                        elevation: 0,
+                        sx: {
+                            overflow: 'visible',
+                            filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+                            '& .MuiAvatar-root': {
+                                width: 32,
+                                height: 32,
+                                ml: -0.5,
+                                mr: 1,
+                            },
+                            '&:before': {
+                                content: '""',
+                                display: 'block',
+                                position: 'absolute',
+                                bottom: -10,
+                                right: 14,
+                                width: 10,
+                                height: 10,
+                                bgcolor: 'background.paper',
+                                transform: 'translateY(-50%) rotate(45deg)',
+                                zIndex: 0,
+                            },
+                        },
+                    }}
+                >
+                    <MenuItem onClick={handleClose} component={Link} to='/'>
+                        <HomeIcon />
+                        <Typography ml={1}>Inicio</Typography>
+                    </MenuItem>
+                    <MenuItem onClick={handleClose} component={Link} to='/week-summary'>
+                        <BarChartIcon />
+                        <Typography ml={1}>Semanal</Typography>
+                    </MenuItem>
+                    <MenuItem onClick={handleClose} component={Link} to='/profile'>
+                        <Avatar alt={currentUser.displayName} src={currentUser.photoURL} />
+                        <Typography>Perfil</Typography>
+                    </MenuItem>
+                    <MenuItem color='inherit' onClick={logOutHandler}>
+                        <LogoutIcon />
+                        <Typography ml={1}>Salir</Typography>
+                    </MenuItem>
+                </Menu>
+
+                {pathname !== '/profile' && (
+                    <StyledFab color='primary' aria-label='add' onClick={() => addCigarette(viewing)}>
                         <AddIcon />
                     </StyledFab>
-                    <Snackbar open={!!error} autoHideDuration={6000} onClose={handleClose} message={error} />
-                    <Box sx={{ flexGrow: 1 }} />
-                    <IconButton color='inherit' onClick={logOutHandler}>
-                        <LogoutIcon />
-                    </IconButton>
-                </Toolbar>
-            </AppBar>
-        )
+                )}
+            </Toolbar>
+        </AppBar>
     )
 }

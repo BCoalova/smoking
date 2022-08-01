@@ -67,6 +67,7 @@ const GlobalProvider = ({ children }) => {
                         })
                     })()
                 }
+
                 setUserData(doc.data())
             } else {
                 // doc.data() will be undefined in this case

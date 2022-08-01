@@ -16,7 +16,9 @@ export default function Smoked() {
                     <IconButton size='large' onClick={() => removeCigarette(viewing)}>
                         <RemoveCircleOutlineOutlinedIcon fontSize='large' />
                     </IconButton>
-                    <Typography variant='h4'>{viewing.count}</Typography>
+                    <Typography variant='h4' color={viewing.count > viewing.dayObjective ? 'secondary' : 'primary'}>
+                        {viewing.count}
+                    </Typography>
                     <IconButton onClick={() => addCigarette(viewing)}>
                         <AddCircleOutlineOutlinedIcon fontSize='large' />
                     </IconButton>

@@ -8,7 +8,7 @@ export default function Main() {
     const matches = useMediaQuery('(min-width:600px)')
 
     return (
-        <Stack component={Paper} elevation={0} gap={6} sx={{ minHeight: '100vh', border: 'none', borderRadius: 0 }}>
+        <Stack component={Paper} elevation={0} gap={6} sx={{ border: 'none', borderRadius: 0 }}>
             <Objective />
             <Stack direction={matches ? 'row' : 'column'} alignItems='strech' gap={1}>
                 <DateComp />
