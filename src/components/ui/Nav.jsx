@@ -4,7 +4,7 @@ import HomeIcon from '@mui/icons-material/Home'
 import LogoutIcon from '@mui/icons-material/Logout'
 import MenuIcon from '@mui/icons-material/Menu'
 import SmokeFreeIcon from '@mui/icons-material/SmokeFree'
-import { Menu, MenuItem } from '@mui/material'
+import { Menu, MenuItem, useMediaQuery } from '@mui/material'
 import AppBar from '@mui/material/AppBar'
 import Avatar from '@mui/material/Avatar'
 import Box from '@mui/material/Box'
@@ -33,6 +33,7 @@ export default function Nav() {
     const { currentUser, logOut, addCigarette, viewing } = useGlobalContext()
     const [error, setError] = useState('')
     const [anchorEl, open, handleClick, handleClose] = useMuiMenu()
+    const matches = useMediaQuery('(min-width:600px)')
 
     async function logOutHandler() {
         try {
@@ -52,9 +53,11 @@ export default function Nav() {
                 <IconButton color='secondary' component={Link} to='/'>
                     <SmokeFreeIcon />
                 </IconButton>
-                <Typography variant='h6' fontWeight={900} color='secondary.main'>
-                    Stop smoking
-                </Typography>
+                {matches && (
+                    <Typography variant='h6' fontWeight={900} color='secondary.main'>
+                        Stop smoking
+                    </Typography>
+                )}
                 <Snackbar open={!!error} autoHideDuration={6000} onClose={closeError} message={error} />
                 <Box sx={{ flexGrow: 1 }} />
                 <IconButton size='large' edge='start' color='inherit' aria-label='menu' onClick={handleClick}>
