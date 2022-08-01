@@ -15,7 +15,7 @@ import { styled } from '@mui/material/styles'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import { useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 import { useGlobalContext } from '../../context/GlobalContext'
 import useMuiMenu from '../../hooks/useMuiMenu'
 
@@ -102,15 +102,25 @@ export default function Nav() {
                         },
                     }}
                 >
-                    <MenuItem onClick={handleClose} component={Link} to='/'>
+                    <MenuItem onClick={handleClose} component={NavLink} to='/' selected={pathname === '/' ? 'active' : ''}>
                         <HomeIcon />
                         <Typography ml={1}>Inicio</Typography>
                     </MenuItem>
-                    <MenuItem onClick={handleClose} component={Link} to='/week-summary'>
+                    <MenuItem
+                        onClick={handleClose}
+                        component={NavLink}
+                        to='/week-summary'
+                        selected={pathname === '/week-summary' ? 'active' : ''}
+                    >
                         <BarChartIcon />
                         <Typography ml={1}>Semanal</Typography>
                     </MenuItem>
-                    <MenuItem onClick={handleClose} component={Link} to='/profile'>
+                    <MenuItem
+                        onClick={handleClose}
+                        component={NavLink}
+                        to='/profile'
+                        selected={pathname === '/profile' ? 'active' : ''}
+                    >
                         <Avatar alt={currentUser.displayName} src={currentUser.photoURL} />
                         <Typography>Perfil</Typography>
                     </MenuItem>
