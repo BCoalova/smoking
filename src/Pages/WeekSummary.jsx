@@ -93,7 +93,7 @@ export default function WeekSummary() {
     return (
         <>
             <Paper component={Stack} my={4} py={2} px={4} gap={4}>
-                <Stack direction='row' gap={1}>
+                <Stack direction='row' flexWrap='wrap' gap={1}>
                     <Typography variant='h4' component='span'>
                         Últimos
                     </Typography>
