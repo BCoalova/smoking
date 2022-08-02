@@ -154,8 +154,28 @@ const GlobalProvider = ({ children }) => {
     const removeAndChangeViewingDay = async current => {
         let currentWithSlash = current.split('-').reverse().join('/')
         let subOneDay = subDays(new Date(currentWithSlash), 1)
-        let formatedPlusOneDay = format(subOneDay, 'dd-MM-yyyy')
-        setViewing(userData.data[formatedPlusOneDay])
+        let formatedSubOneDay = format(subOneDay, 'dd-MM-yyyy')
+        if (!userData.data[formatedSubOneDay]) {
+            let docDate = `data.${formatedSubOneDay}`
+            let document = doc(db, 'users', currentUser.uid)
+            ;(async () => {
+                await updateDoc(document, {
+                    [docDate]: {
+                        count: 0,
+                        dayObjective: 0,
+                        day: formatedSubOneDay,
+                    },
+                })
+            })()
+            return setViewing({
+                [docDate]: {
+                    count: 0,
+                    dayObjective: 0,
+                    day: formatedSubOneDay,
+                },
+            })
+        }
+        setViewing(userData.data[formatedSubOneDay])
     }
 
     const setDayObjective = async (value, day) => {
