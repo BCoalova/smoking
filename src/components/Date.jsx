@@ -14,7 +14,12 @@ export default function DateComp() {
     const { userData, viewing, addAndChangeViewingDay, removeAndChangeViewingDay } = useGlobalContext()
     const matches = useMediaQuery('(min-width:600px)')
 
+    // eslint-disable-next-line no-undef
+    console.log('userData.createdAt => ', userData?.createdTime)
+
     return (
+        userData &&
+        userData?.createdTime &&
         viewing && (
             <Stack gap={1} alignItems={matches ? 'flex-start' : 'stretch'} sx={{ position: 'relative' }}>
                 <Paper sx={{ py: 4, px: 6, position: 'relative', display: 'flex', justifyContent: 'center' }}>

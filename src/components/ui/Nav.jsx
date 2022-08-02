@@ -31,7 +31,7 @@ export default function Nav() {
     let { pathname } = useLocation()
     const { currentUser, logOut, addCigarette, viewing } = useGlobalContext()
     const [error, setError] = useState('')
-    const [anchorEl, open, handleClick, handleClose] = useMuiMenu()
+    const [, /* anchorEl */ open, handleClick, handleClose] = useMuiMenu()
     const matches = useMediaQuery('(min-width:600px)')
 
     async function logOutHandler() {

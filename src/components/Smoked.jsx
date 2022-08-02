@@ -1,6 +1,6 @@
-import { IconButton, Stack, Typography } from '@mui/material'
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined'
 import RemoveCircleOutlineOutlinedIcon from '@mui/icons-material/RemoveCircleOutlineOutlined'
+import { IconButton, Stack, Typography } from '@mui/material'
 import { useGlobalContext } from '../context/GlobalContext'
 
 export default function Smoked() {
@@ -8,7 +8,7 @@ export default function Smoked() {
 
     return (
         viewing && (
-            <Stack direction='row' gap={1} justifyContent='space-between'>
+            <Stack direction='row' gap={1} justifyContent='space-between' sx={{ mb: 10 }}>
                 <Typography variant='h4' sx={{ display: 'grid', placeContent: 'center', lineHeight: 1 }}>
                     Fumados:{' '}
                 </Typography>

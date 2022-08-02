@@ -29,7 +29,11 @@ const GlobalProvider = ({ children }) => {
     const login = () => signInWithPopup(googleSignIn.auth, googleSignIn.googleProvider)
 
     /* Log out */
-    const logOut = () => signOut(googleSignIn.auth)
+    const logOut = () => {
+        setViewing(null)
+        setUserData(null)
+        signOut(googleSignIn.auth)
+    }
 
     /* log in observer (triggers ) */
     useEffect(() => {
@@ -49,14 +53,16 @@ const GlobalProvider = ({ children }) => {
     /* GET OR CREATE USER DATABASE INFO */
     useEffect(() => {
         if (!currentUser) return
-        let todayString = format(new Date(), 'dd-MM-YYY')
-        let dataDotDay = `data.${todayString}`
 
         let document = doc(db, 'users', currentUser.uid)
 
         const unsub = onSnapshot(document, doc => {
+            let todayString = format(new Date(), 'dd-MM-YYY')
+            let dataDotDay = `data.${todayString}`
             if (doc.data()) {
-                if (!doc.data().data[todayString]) {
+                if (doc.data().data[todayString] == undefined) {
+                    // eslint-disable-next-line no-undef
+                    console.log('doc.data() inside !doc.data().data[todayString] => ', doc.data())
                     ;(async () => {
                         await updateDoc(document, {
                             [dataDotDay]: {
@@ -66,15 +72,18 @@ const GlobalProvider = ({ children }) => {
                             },
                         })
                     })()
+                    return
                 }
-
+                // eslint-disable-next-line no-undef
+                console.log('doc.data() => ', doc.data())
                 setUserData(doc.data())
-            } else {
-                // doc.data() will be undefined in this case
-                let todayString = format(new Date(), 'dd-MM-yyyy')
-                ;(async () =>
-                    await setDoc(document, {
-                        createdTime: serverTimestamp(),
+                return
+            }
+            if (!doc.data()) {
+                // eslint-disable-next-line no-undef
+                console.log('!doc.data() => ', doc.data())
+                ;(async () => {
+                    let docData = {
                         currentObjective: 0,
                         data: {
                             [todayString]: {
@@ -85,7 +94,17 @@ const GlobalProvider = ({ children }) => {
                         },
                         name: currentUser.displayName,
                         email: currentUser.email,
-                    }))()
+                    }
+                    try {
+                        await setDoc(document, {
+                            createdTime: serverTimestamp(),
+                            ...docData,
+                        })
+                    } catch (err) {
+                        // eslint-disable-next-line no-undef
+                        console.log('err get data when none existed => ', err)
+                    }
+                })()
             }
         })
 
@@ -96,10 +115,9 @@ const GlobalProvider = ({ children }) => {
     useEffect(() => {
         if (!currentUser) return
         if (!userData) return
+        if (viewing) return
 
         let todayString = format(new Date(), 'dd-MM-YYY')
-
-        if (viewing) return
 
         setViewing(userData.data[todayString])
     }, [currentUser, userData, viewing])
