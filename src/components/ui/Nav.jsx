@@ -4,9 +4,8 @@ import HomeIcon from '@mui/icons-material/Home'
 import LogoutIcon from '@mui/icons-material/Logout'
 import MenuIcon from '@mui/icons-material/Menu'
 import SmokeFreeIcon from '@mui/icons-material/SmokeFree'
-import { Menu, MenuItem, useMediaQuery } from '@mui/material'
+import { List, ListItem, ListItemButton, ListItemIcon, ListItemText, SwipeableDrawer, useMediaQuery } from '@mui/material'
 import AppBar from '@mui/material/AppBar'
-import Avatar from '@mui/material/Avatar'
 import Box from '@mui/material/Box'
 import Fab from '@mui/material/Fab'
 import IconButton from '@mui/material/IconButton'
@@ -63,75 +62,67 @@ export default function Nav() {
                 <IconButton size='large' edge='start' color='inherit' aria-label='menu' onClick={handleClick}>
                     <MenuIcon />
                 </IconButton>
-                <Menu
-                    id='basic-menu'
-                    anchorEl={anchorEl}
-                    open={open}
-                    onClose={handleClose}
-                    MenuListProps={{
-                        'aria-labelledby': 'basic-button',
-                    }}
-                    anchorOrigin={{
-                        vertical: 'top',
-                        horizontal: 'right',
-                    }}
-                    transformOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'right',
-                    }}
-                    PaperProps={{
-                        elevation: 0,
-                        sx: {
-                            overflow: 'visible',
-                            filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-                            '& .MuiAvatar-root': {
-                                width: 32,
-                                height: 32,
-                                ml: -0.5,
-                                mr: 1,
-                            },
-                            '&:before': {
-                                content: '""',
-                                display: 'block',
-                                position: 'absolute',
-                                bottom: -10,
-                                right: 14,
-                                width: 10,
-                                height: 10,
-                                bgcolor: 'background.paper',
-                                transform: 'translateY(-50%) rotate(45deg)',
-                                zIndex: 0,
-                            },
-                        },
-                    }}
-                >
-                    <MenuItem onClick={handleClose} component={NavLink} to='/' selected={pathname === '/' ? 'active' : ''}>
-                        <HomeIcon />
-                        <Typography ml={1}>Inicio</Typography>
-                    </MenuItem>
-                    <MenuItem
-                        onClick={handleClose}
-                        component={NavLink}
-                        to='/week-summary'
-                        selected={pathname === '/week-summary' ? 'active' : ''}
+                <SwipeableDrawer anchor='right' open={open} onClose={handleClose} onOpen={handleClick}>
+                    <List
+                        sx={{
+                            width: '300px',
+                            flexDirection: 'column',
+                            display: 'flex',
+                            alignItems: 'flex-end',
+                            justifyContent: 'flex-end',
+                        }}
+                        disablePadding
                     >
-                        <BarChartIcon />
-                        <Typography ml={1}>Semanal</Typography>
-                    </MenuItem>
-                    <MenuItem
-                        onClick={handleClose}
-                        component={NavLink}
-                        to='/profile'
-                        selected={pathname === '/profile' ? 'active' : ''}
-                    >
-                        <Avatar alt={currentUser.displayName} src={currentUser.photoURL} />
-                        <Typography>Perfil</Typography>
-                    </MenuItem>
-                    <MenuItem color='inherit' onClick={logOutHandler}>
-                        <LogoutIcon />
-                        <Typography ml={1}>Salir</Typography>
-                    </MenuItem>
-                </Menu>
+                        <ListItem disablePadding>
+                            <ListItemButton onClick={handleClose} component={NavLink} to='/' selected={pathname === '/'}>
+                                <ListItemIcon>
+                                    <HomeIcon />
+                                </ListItemIcon>
+                                <ListItemText primary={<Typography color='basic'>Inicio</Typography>} />
+                            </ListItemButton>
+                        </ListItem>
+                        <ListItem disablePadding>
+                            <ListItemButton
+                                onClick={handleClose}
+                                component={NavLink}
+                                to='/week-summary'
+                                selected={pathname === '/week-summary'}
+                            >
+                                <ListItemIcon>
+                                    <BarChartIcon />
+                                </ListItemIcon>
+                                <ListItemText primary='Semanal' />
+                            </ListItemButton>
+                        </ListItem>
+                        <ListItem disablePadding>
+                            <ListItemButton
+                                onClick={handleClose}
+                                component={NavLink}
+                                to='/profile'
+                                selected={pathname === '/profile'}
+                            >
+                                <ListItemIcon>
+                                    <Box
+                                        component='img'
+                                        width={24}
+                                        sx={{ borderRadius: '50%' }}
+                                        alt={currentUser.displayName}
+                                        src={currentUser.photoURL}
+                                    />
+                                </ListItemIcon>
+                                <ListItemText primary='Perfil' />
+                            </ListItemButton>
+                        </ListItem>
+                        <ListItem disablePadding>
+                            <ListItemButton onClick={logOutHandler}>
+                                <ListItemIcon>
+                                    <LogoutIcon />
+                                </ListItemIcon>
+                                <ListItemText primary='Salir' />
+                            </ListItemButton>
+                        </ListItem>
+                    </List>
+                </SwipeableDrawer>
 
                 {pathname !== '/profile' && (
                     <StyledFab color='primary' aria-label='add' onClick={() => addCigarette(viewing)}>
