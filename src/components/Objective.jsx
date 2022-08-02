@@ -4,20 +4,20 @@ import { useGlobalContext } from '../context/GlobalContext'
 import useInput from '../hooks/useInput'
 
 export default function Objective() {
-    const { viewing, setDayObjective } = useGlobalContext()
+    const { viewing, userData, setDayObjective } = useGlobalContext()
     const [value, bind /* reset */, , setFN] = useInput(0)
 
     useEffect(() => {
         if (!viewing) return
-        setFN(viewing.dayObjective)
-    }, [viewing, setFN])
+        setFN(userData.data[viewing].dayObjective)
+    }, [userData, viewing, setFN])
 
     return (
         <Stack gap={2} pt={2}>
             <Typography variant='h3'>
                 Objetivo diario:{' '}
                 <Box component='span' sx={{ fontWeight: 900 }}>
-                    {viewing && viewing.dayObjective}
+                    {viewing && userData.data[viewing].dayObjective}
                 </Box>
             </Typography>
             <Stack direction='row' gap={0.5} sx={{ width: '100%' }}>
@@ -28,7 +28,7 @@ export default function Objective() {
                 <Button
                     sx={{ height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', py: 0, lineHeight: 1 }}
                     variant='contained'
-                    onClick={() => setDayObjective(value, viewing.day)}
+                    onClick={() => setDayObjective(value, viewing)}
                 >
                     modificar
                 </Button>

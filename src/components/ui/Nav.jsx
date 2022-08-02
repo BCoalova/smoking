@@ -29,7 +29,7 @@ const StyledFab = styled(Fab)({
 
 export default function Nav() {
     let { pathname } = useLocation()
-    const { currentUser, logOut, addCigarette, viewing } = useGlobalContext()
+    const { userData, currentUser, logOut, addCigarette, viewing } = useGlobalContext()
     const [error, setError] = useState('')
     const [, /* anchorEl */ open, handleClick, handleClose] = useMuiMenu()
     const matches = useMediaQuery('(min-width:600px)')
@@ -125,7 +125,7 @@ export default function Nav() {
                 </SwipeableDrawer>
 
                 {pathname !== '/profile' && (
-                    <StyledFab color='primary' aria-label='add' onClick={() => addCigarette(viewing)}>
+                    <StyledFab color='primary' aria-label='add' onClick={() => addCigarette(userData.data[viewing])}>
                         <AddIcon />
                     </StyledFab>
                 )}

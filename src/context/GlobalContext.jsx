@@ -116,7 +116,7 @@ const GlobalProvider = ({ children }) => {
 
         if (!userData.data[todayString]) return
 
-        setViewing(userData.data[todayString])
+        setViewing(todayString)
     }, [currentUser, userData, viewing])
 
     /* ADD ONE DAY, AND CHANGE VIEWING TO THAT DATE */
@@ -126,17 +126,13 @@ const GlobalProvider = ({ children }) => {
         let formatedPlusOneDay = format(plusOneDay, 'dd-MM-yyyy')
 
         if (userData.data[formatedPlusOneDay]) {
-            return setViewing(userData.data[formatedPlusOneDay])
+            return setViewing(formatedPlusOneDay)
         }
 
         let document = doc(db, 'users', currentUser.uid)
         let dataDotDay = `data.${formatedPlusOneDay}`
 
-        setViewing({
-            count: 0,
-            dayObjective: 0,
-            day: formatedPlusOneDay,
-        })
+        setViewing(formatedPlusOneDay)
 
         try {
             await updateDoc(document, {
@@ -169,13 +165,8 @@ const GlobalProvider = ({ children }) => {
                     },
                 })
             })()
-            return setViewing({
-                count: 0,
-                dayObjective: 0,
-                day: formatedSubOneDay,
-            })
         }
-        setViewing(userData.data[formatedSubOneDay])
+        setViewing(formatedSubOneDay)
     }
 
     const setDayObjective = async (value, day) => {
@@ -191,8 +182,17 @@ const GlobalProvider = ({ children }) => {
             // eslint-disable-next-line no-undef
             console.log(err)
         }
-
-        setViewing(current => ({ ...current, dayObjective: parseInt(value) }))
+        // setUserData(current => ({ ...current, dayObjective: parseInt(value) }))
+        setUserData(current => ({
+            ...current,
+            data: {
+                ...current.data,
+                [day]: {
+                    ...current.data[day],
+                    dayObjective: parseInt(value),
+                },
+            },
+        }))
     }
 
     /* ADD A CIGARETTE SMOKE */
@@ -211,7 +211,10 @@ const GlobalProvider = ({ children }) => {
             console.log(err)
         }
 
-        setViewing(current => ({ ...current, count: current.count + 1 }))
+        setUserData(current => ({
+            ...current,
+            data: { ...current.data, [day]: { ...current.data[day], count: current.count + 1 } },
+        }))
     }
 
     const removeCigarette = async current => {
@@ -229,7 +232,10 @@ const GlobalProvider = ({ children }) => {
             console.log(err)
         }
 
-        setViewing(current => ({ ...current, count: current.count - 1 }))
+        setUserData(current => ({
+            ...current,
+            data: { ...current.data, [day]: { ...current.data[day], count: current.count - 1 } },
+        }))
     }
 
     const value = {

@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
-import { Paper, Stack, Typography } from '@mui/material'
+import { Backdrop, CircularProgress, Paper, Stack, Typography } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js'
 import { Line } from 'react-chartjs-2'
@@ -38,6 +38,7 @@ export default function WeekSummary() {
 
     useEffect(() => {
         if (!userData) return
+        if (!viewing) return
         let userDataArr = Object.entries(userData.data).reduce((acc, el) => {
             return [...acc, { date: el[0], count: el[1].count, dayObjective: el[1].dayObjective }]
         }, [])
@@ -79,7 +80,14 @@ export default function WeekSummary() {
         ]
 
         setData({ labels, datasets })
-    }, [userData, isLight])
+    }, [userData, isLight, viewing])
+
+    if (!userData && !viewing)
+        return (
+            <Backdrop open={!userData && !viewing}>
+                <CircularProgress color='inherit' />
+            </Backdrop>
+        )
 
     return (
         <>
@@ -92,7 +100,7 @@ export default function WeekSummary() {
                     {data && <Line options={options} data={data} />}
                 </Stack>
             </Paper>
-            {userData && userData?.createdTime && viewing && <Smoked />}
+            {userData && userData?.createdTime && viewing && userData.data[viewing] && <Smoked />}
         </>
     )
 }

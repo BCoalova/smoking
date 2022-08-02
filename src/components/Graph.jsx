@@ -19,30 +19,32 @@ export const options = {
 }
 
 export default function Graph() {
-    const { viewing, isLight } = useGlobalContext()
+    const { viewing, userData, isLight } = useGlobalContext()
 
     return (
-        viewing && (
-            <Paper sx={{ flexGrow: 1, p: 2 }}>
-                <Bar
-                    options={options}
-                    data={{
-                        labels: [viewing.day],
-                        datasets: [
-                            {
-                                label: 'Objetivo',
-                                data: [viewing.dayObjective] /* labels.map(() => faker.datatype.number({ min: 0, max: 1000 })) */,
-                                backgroundColor: isLight ? 'hsl(29, 94%, 51%)' : 'hsl(29, 94%, 71%)',
-                            },
-                            {
-                                label: 'Fumados',
-                                data: [viewing.count] /* labels.map(() => faker.datatype.number({ min: 0, max: 1000 })) */,
-                                backgroundColor: isLight ? 'hsl(216, 94%, 51%)' : 'hsl(216, 94%, 71%)',
-                            },
-                        ],
-                    }}
-                />
-            </Paper>
-        )
+        <Paper sx={{ flexGrow: 1, p: 2 }}>
+            <Bar
+                options={options}
+                data={{
+                    labels: [viewing],
+                    datasets: [
+                        {
+                            label: 'Objetivo',
+                            data: [
+                                userData.data[viewing].dayObjective,
+                            ] /* labels.map(() => faker.datatype.number({ min: 0, max: 1000 })) */,
+                            backgroundColor: isLight ? 'hsl(29, 94%, 51%)' : 'hsl(29, 94%, 71%)',
+                        },
+                        {
+                            label: 'Fumados',
+                            data: [
+                                userData.data[viewing].count,
+                            ] /* labels.map(() => faker.datatype.number({ min: 0, max: 1000 })) */,
+                            backgroundColor: isLight ? 'hsl(216, 94%, 51%)' : 'hsl(216, 94%, 71%)',
+                        },
+                    ],
+                }}
+            />
+        </Paper>
     )
 }

@@ -21,23 +21,19 @@ export default function DateComp() {
                     <Button
                         size='small'
                         sx={{ cursor: 'pointer', minWidth: 12 }}
-                        disabled={viewing.day === format(convertTimeStampToDate(userData?.createdTime), 'dd-MM-yyyy')}
-                        onClick={() => removeAndChangeViewingDay(viewing.day)}
+                        disabled={viewing === format(convertTimeStampToDate(userData?.createdTime), 'dd-MM-yyyy')}
+                        onClick={() => removeAndChangeViewingDay(viewing)}
                     >
                         <ChevronLeftIcon />
                     </Button>
                 </Box>
                 <Box sx={{ position: 'absolute', top: '50%', right: 2, transform: 'translateY(-50%)' }}>
-                    <Button
-                        size='small'
-                        sx={{ cursor: 'pointer', minWidth: 12 }}
-                        onClick={() => addAndChangeViewingDay(viewing.day)}
-                    >
+                    <Button size='small' sx={{ cursor: 'pointer', minWidth: 12 }} onClick={() => addAndChangeViewingDay(viewing)}>
                         <ChevronRightIcon />
                     </Button>
                 </Box>
                 <Stack alignItems='center' gap={1} direction={matches ? 'column' : 'row'}>
-                    {viewing?.day?.split('-').map((field, index, array) => (
+                    {viewing?.split('-').map((field, index, array) => (
                         <React.Fragment key={`${field}-${index}`}>
                             <Typography variant='h4'>{field}</Typography>
                             {array.length - 1 !== index && <Divider flexItem orientation={matches ? 'horizontal' : 'vertical'} />}

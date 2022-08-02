@@ -4,7 +4,7 @@ import { IconButton, Stack, Typography } from '@mui/material'
 import { useGlobalContext } from '../context/GlobalContext'
 
 export default function Smoked() {
-    const { addCigarette, viewing, removeCigarette } = useGlobalContext()
+    const { addCigarette, userData, viewing, removeCigarette } = useGlobalContext()
 
     return (
         <Stack direction='row' gap={1} justifyContent='space-between' sx={{ mb: 10 }}>
@@ -12,13 +12,16 @@ export default function Smoked() {
                 Fumados:{' '}
             </Typography>
             <Stack direction='row' alignItems='center' gap={1}>
-                <IconButton size='large' onClick={() => removeCigarette(viewing)}>
+                <IconButton size='large' onClick={() => removeCigarette(userData.data[viewing])}>
                     <RemoveCircleOutlineOutlinedIcon fontSize='large' />
                 </IconButton>
-                <Typography variant='h4' color={viewing.count > viewing.dayObjective ? 'secondary' : 'primary'}>
-                    {viewing.count}
+                <Typography
+                    variant='h4'
+                    color={userData.data[viewing].count > userData.data[viewing].dayObjective ? 'secondary' : 'primary'}
+                >
+                    {userData.data[viewing].count}
                 </Typography>
-                <IconButton onClick={() => addCigarette(viewing)}>
+                <IconButton onClick={() => addCigarette(userData.data[viewing])}>
                     <AddCircleOutlineOutlinedIcon fontSize='large' />
                 </IconButton>
             </Stack>

@@ -1,6 +1,6 @@
 import GoogleIcon from '@mui/icons-material/Google'
-import { Button, Snackbar, Stack, Typography, useMediaQuery } from '@mui/material'
-import { useState } from 'react'
+import { Backdrop, Button, CircularProgress, Snackbar, Stack, Typography, useMediaQuery } from '@mui/material'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useGlobalContext } from '../context/GlobalContext'
 
@@ -8,11 +8,16 @@ export default function Login() {
     let navigate = useNavigate()
     const matches = useMediaQuery('(min-width:600px)')
 
-    const { login } = useGlobalContext()
+    const { login, currentUser, loadingUser } = useGlobalContext()
     const [error, setError] = useState('')
     function closeError() {
         setError('')
     }
+
+    useEffect(() => {
+        if (!currentUser) return
+        navigate('/', { replace: true })
+    }, [currentUser, navigate])
 
     async function loginHandler() {
         setError('')
@@ -26,6 +31,13 @@ export default function Login() {
             navigate('/', { replace: true })
         }
     }
+
+    if (loadingUser)
+        return (
+            <Backdrop sx={{ color: '#fff', zIndex: theme => theme.zIndex.drawer + 1 }} open={loadingUser}>
+                <CircularProgress color='inherit' />
+            </Backdrop>
+        )
 
     return (
         <Stack justifyContent='center' alignItems='center' sx={{ minHeight: '100vh' }}>
