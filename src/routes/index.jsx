@@ -1,13 +1,13 @@
-import { Backdrop, CircularProgress, ThemeProvider } from '@mui/material'
+import { ThemeProvider } from '@mui/material'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Layout from '../components/ui/Layout'
 import { useGlobalContext } from '../context/GlobalContext'
 import Main from '../Pages'
-import { themeDark, themeLight } from '../styles/theme'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Login from '../Pages/Login'
-import PrivateRoute from './utils'
-import WeekSummary from '../Pages/WeekSummary'
 import Profile from '../Pages/Profile'
+import WeekSummary from '../Pages/WeekSummary'
+import { themeDark, themeLight } from '../styles/theme'
+import PrivateRoute from './utils'
 
 export default function App() {
     const { isLight } = useGlobalContext()
