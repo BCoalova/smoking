@@ -61,8 +61,7 @@ const GlobalProvider = ({ children }) => {
             let dataDotDay = `data.${todayString}`
             if (doc.data()) {
                 if (doc.data().data[todayString] == undefined) {
-                    // eslint-disable-next-line no-undef
-                    console.log('doc.data() inside !doc.data().data[todayString] => ', doc.data())
+                    // Existe en db pero no registra día de hoy
                     ;(async () => {
                         await updateDoc(document, {
                             [dataDotDay]: {
@@ -74,14 +73,10 @@ const GlobalProvider = ({ children }) => {
                     })()
                     return
                 }
-                // eslint-disable-next-line no-undef
-                console.log('doc.data() => ', doc.data())
                 setUserData(doc.data())
                 return
             }
             if (!doc.data()) {
-                // eslint-disable-next-line no-undef
-                console.log('!doc.data() => ', doc.data())
                 ;(async () => {
                     let docData = {
                         currentObjective: 0,

@@ -92,7 +92,7 @@ export default function WeekSummary() {
                     {data && <Line options={options} data={data} />}
                 </Stack>
             </Paper>
-            <Smoked />
+            {userData && userData?.createdTime && viewing && <Smoked />}
         </>
     )
 }

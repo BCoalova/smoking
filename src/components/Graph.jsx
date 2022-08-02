@@ -7,7 +7,7 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip)
 
 export const options = {
     responsive: true,
-    plugins: {
+    /* plugins: {
         legend: {
             position: 'top',
         },
@@ -15,7 +15,7 @@ export const options = {
             display: false,
             text: 'Diario',
         },
-    },
+    }, */
 }
 
 export default function Graph() {
