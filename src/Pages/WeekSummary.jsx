@@ -32,7 +32,7 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, T
 
 export default function WeekSummary() {
     //eslint-disable-next-line no-unused-vars
-    const { userData, isLight } = useGlobalContext()
+    const { userData, isLight, viewing } = useGlobalContext()
 
     const [data, setData] = useState(null)
 

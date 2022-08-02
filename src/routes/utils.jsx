@@ -12,5 +12,5 @@ export default function PrivateRoute({ children }) {
             </Backdrop>
         )
 
-    return currentUser ? children : <Navigate to='/login' />
+    return currentUser ? children : <Navigate to='/login' replace={true} />
 }

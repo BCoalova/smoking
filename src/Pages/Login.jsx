@@ -23,7 +23,7 @@ export default function Login() {
             console.log(err)
             setError('Ups hubo un problema, vuelve a intentarlo')
         } finally {
-            navigate('/')
+            navigate('/', { replace: true })
         }
     }
 
