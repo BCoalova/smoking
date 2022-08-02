@@ -114,6 +114,8 @@ const GlobalProvider = ({ children }) => {
 
         let todayString = format(new Date(), 'dd-MM-YYY')
 
+        if (!userData.data[todayString]) return
+
         setViewing(userData.data[todayString])
     }, [currentUser, userData, viewing])
 
@@ -168,11 +170,9 @@ const GlobalProvider = ({ children }) => {
                 })
             })()
             return setViewing({
-                [formatedSubOneDay]: {
-                    count: 0,
-                    dayObjective: 0,
-                    day: formatedSubOneDay,
-                },
+                count: 0,
+                dayObjective: 0,
+                day: formatedSubOneDay,
             })
         }
         setViewing(userData.data[formatedSubOneDay])
