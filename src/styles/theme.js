@@ -10,6 +10,9 @@ const themeLight = createTheme({
         secondary: {
             main: 'hsl(29, 94%, 51%)',
         },
+        text: {
+            basic: 'hsl(0, 0%, 20%)',
+        },
     },
 })
 
@@ -27,6 +30,9 @@ const themeDark = createTheme({
         },
         background: {
             paper: '#2f2f2f',
+        },
+        text: {
+            basic: 'hsl(0, 0%, 90%)',
         },
     },
 })

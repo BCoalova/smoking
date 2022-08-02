@@ -68,11 +68,13 @@ export default function WeekSummary() {
                 label: 'Objetivo',
                 data: dayObjective,
                 backgroundColor: isLight ? 'hsl(29, 94%, 51%)' : 'hsl(29, 94%, 71%)',
+                borderColor: isLight ? 'hsl(29, 94%, 51%)' : 'hsl(29, 94%, 71%)',
             },
             {
                 label: 'Fumados',
                 data: count,
                 backgroundColor: isLight ? 'hsl(216, 94%, 51%)' : 'hsl(216, 94%, 71%)',
+                borderColor: isLight ? 'hsl(216, 94%, 51%)' : 'hsl(216, 94%, 71%)',
             },
         ]
 
