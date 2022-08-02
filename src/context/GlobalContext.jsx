@@ -182,17 +182,6 @@ const GlobalProvider = ({ children }) => {
             // eslint-disable-next-line no-undef
             console.log(err)
         }
-        // setUserData(current => ({ ...current, dayObjective: parseInt(value) }))
-        setUserData(current => ({
-            ...current,
-            data: {
-                ...current.data,
-                [day]: {
-                    ...current.data[day],
-                    dayObjective: parseInt(value),
-                },
-            },
-        }))
     }
 
     /* ADD A CIGARETTE SMOKE */
@@ -210,11 +199,6 @@ const GlobalProvider = ({ children }) => {
             // eslint-disable-next-line no-undef
             console.log(err)
         }
-
-        setUserData(current => ({
-            ...current,
-            data: { ...current.data, [day]: { ...current.data[day], count: current.count + 1 } },
-        }))
     }
 
     const removeCigarette = async current => {
@@ -231,11 +215,6 @@ const GlobalProvider = ({ children }) => {
             // eslint-disable-next-line no-undef
             console.log(err)
         }
-
-        setUserData(current => ({
-            ...current,
-            data: { ...current.data, [day]: { ...current.data[day], count: current.count - 1 } },
-        }))
     }
 
     const value = {

@@ -5,7 +5,7 @@ import { useGlobalContext } from '../context/GlobalContext'
 
 export default function Smoked() {
     const { addCigarette, userData, viewing, removeCigarette } = useGlobalContext()
-
+    console.log(userData.data)
     return (
         <Stack direction='row' gap={1} justifyContent='space-between' sx={{ mb: 10 }}>
             <Typography variant='h4' sx={{ display: 'grid', placeContent: 'center', lineHeight: 1 }}>
