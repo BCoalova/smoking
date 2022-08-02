@@ -168,7 +168,7 @@ const GlobalProvider = ({ children }) => {
                 })
             })()
             return setViewing({
-                [docDate]: {
+                [formatedSubOneDay]: {
                     count: 0,
                     dayObjective: 0,
                     day: formatedSubOneDay,
