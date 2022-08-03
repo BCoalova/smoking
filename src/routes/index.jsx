@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Layout from '../components/ui/Layout'
 import { useGlobalContext } from '../context/GlobalContext'
 import Main from '../Pages'
+import AllInfo from '../Pages/AllInfo'
 import Login from '../Pages/Login'
 import Profile from '../Pages/Profile'
 import WeekSummary from '../Pages/WeekSummary'
@@ -38,6 +39,14 @@ export default function App() {
                             element={
                                 <PrivateRoute>
                                     <WeekSummary />
+                                </PrivateRoute>
+                            }
+                        />
+                        <Route
+                            path='/history'
+                            element={
+                                <PrivateRoute>
+                                    <AllInfo />
                                 </PrivateRoute>
                             }
                         />

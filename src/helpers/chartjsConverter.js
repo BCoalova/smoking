@@ -1,6 +1,3 @@
-import { format } from 'date-fns'
-import descSortDatesFn from './descSortDatesFn'
-
 export default function chartjsConverter(arr, isLight, amount = 0) {
     let lastSevenDays = arr
     // eslint-disable-next-line no-undef
