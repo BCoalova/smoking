@@ -4,7 +4,16 @@ import HomeIcon from '@mui/icons-material/Home'
 import LogoutIcon from '@mui/icons-material/Logout'
 import MenuIcon from '@mui/icons-material/Menu'
 import SmokeFreeIcon from '@mui/icons-material/SmokeFree'
-import { List, ListItem, ListItemButton, ListItemIcon, ListItemText, SwipeableDrawer, useMediaQuery } from '@mui/material'
+import {
+    Divider,
+    List,
+    ListItem,
+    ListItemButton,
+    ListItemIcon,
+    ListItemText,
+    SwipeableDrawer,
+    useMediaQuery,
+} from '@mui/material'
 import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
 import Fab from '@mui/material/Fab'
@@ -47,13 +56,13 @@ export default function Nav() {
     }
 
     return (
-        <AppBar position='fixed' color='primary' sx={{ top: 'auto', bottom: 0 }}>
+        <AppBar position='fixed' color='primary' sx={{ top: 'auto', bottom: 0 }} enableColorOnDark>
             <Toolbar sx={{ gap: 1, alignItems: 'center' }}>
-                <IconButton color='secondary' component={Link} to='/'>
+                <IconButton color='inherit' component={Link} to='/'>
                     <SmokeFreeIcon />
                 </IconButton>
                 {matches && (
-                    <Typography variant='h6' fontWeight={900} color='secondary.main'>
+                    <Typography variant='h6' fontWeight={900} color='inherit'>
                         Stop smoking
                     </Typography>
                 )}
@@ -62,7 +71,13 @@ export default function Nav() {
                 <IconButton size='large' edge='start' color='inherit' aria-label='menu' onClick={handleClick}>
                     <MenuIcon />
                 </IconButton>
-                <SwipeableDrawer anchor='right' open={open} onClose={handleClose} onOpen={handleClick}>
+                <SwipeableDrawer
+                    anchor='right'
+                    open={open}
+                    onClose={handleClose}
+                    onOpen={handleClick}
+                    PaperProps={{ sx: { display: 'flex', justifyContent: 'end' } }}
+                >
                     <List
                         sx={{
                             width: '300px',
@@ -113,6 +128,7 @@ export default function Nav() {
                                 <ListItemText primary='Perfil' />
                             </ListItemButton>
                         </ListItem>
+                        <Divider flexItem />
                         <ListItem disablePadding>
                             <ListItemButton onClick={logOutHandler}>
                                 <ListItemIcon>
