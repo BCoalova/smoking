@@ -9,6 +9,7 @@ import {
     TableHead,
     TableRow,
     Typography,
+    useMediaQuery,
 } from '@mui/material'
 import { useGlobalContext } from '../context/GlobalContext'
 import { userDataToArr } from '../helpers/userDataToArr'
@@ -35,6 +36,7 @@ export default function AllInfo() {
     const { userData } = useGlobalContext()
     const [filteredArr, setFilterArr] = useState([])
     const [ascDescValue /* makeAsc */ /* makeDesc */, , , toggle] = useBoolean(false)
+    const matches = useMediaQuery('(min-width:600px)')
 
     useEffect(() => {
         if (!userData) return
@@ -53,7 +55,7 @@ export default function AllInfo() {
 
     return (
         userData && (
-            <Stack sx={{ maxHeight: 'calc(100vh - 64px)' }}>
+            <Stack sx={{ maxHeight: `calc(100vh - ${matches ? '64px' : '100px'})` }}>
                 <TableContainer component={StyledPaper} sx={{ my: 4 }} elevation={3} className='fancyScrollBar'>
                     <Table>
                         <TableHead>
