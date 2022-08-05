@@ -1,15 +1,23 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
-import { AppBar, Backdrop, Box, CircularProgress, IconButton, Paper, Stack, Tab, Tabs, Typography } from '@mui/material'
+import AddCircleIcon from '@mui/icons-material/AddCircle'
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle'
+import AppBar from '@mui/material/AppBar'
+import Backdrop from '@mui/material/Backdrop'
+import Box from '@mui/material/Box'
+import CircularProgress from '@mui/material/CircularProgress'
+import IconButton from '@mui/material/IconButton'
+import Paper from '@mui/material/Paper'
+import Stack from '@mui/material/Stack'
+import Tab from '@mui/material/Tab'
+import Tabs from '@mui/material/Tabs'
+import Typography from '@mui/material/Typography'
 import { CategoryScale, Chart as ChartJS, Legend, LinearScale, LineElement, PointElement, Title, Tooltip } from 'chart.js'
 import React, { useEffect, useState } from 'react'
 import { Bar, Line } from 'react-chartjs-2'
-import Smoked from '../components/Smoked'
 import { useGlobalContext } from '../context/GlobalContext'
 import chartjsConverter from '../helpers/chartjsConverter'
-import AddCircleIcon from '@mui/icons-material/AddCircle'
-import RemoveCircleIcon from '@mui/icons-material/RemoveCircle'
-import { userDataToArr, userDataToArrUntilToday } from '../helpers/userDataToArr'
+import { userDataToArrUntilToday } from '../helpers/userDataToArr'
 
 const options = {
     responsive: true,
@@ -93,7 +101,7 @@ export default function WeekSummary() {
     return (
         data && (
             <>
-                <Paper component={Stack} my={4} gap={4}>
+                <Paper component={Stack} my={10} gap={4}>
                     <AppBar sx={{ position: 'relative', borderBottom: 1, borderColor: 'primary.main' }} elevation={1}>
                         <Tabs
                             value={value}

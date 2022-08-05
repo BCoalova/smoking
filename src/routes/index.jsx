@@ -4,6 +4,7 @@ import Layout from '../components/ui/Layout'
 import { useGlobalContext } from '../context/GlobalContext'
 import Main from '../Pages'
 import AllInfo from '../Pages/AllInfo'
+import LastSmoked from '../Pages/LastSmoked'
 import Login from '../Pages/Login'
 import Profile from '../Pages/Profile'
 import WeekSummary from '../Pages/WeekSummary'
@@ -47,6 +48,14 @@ export default function App() {
                             element={
                                 <PrivateRoute>
                                     <AllInfo />
+                                </PrivateRoute>
+                            }
+                        />
+                        <Route
+                            path='/last-smoked'
+                            element={
+                                <PrivateRoute>
+                                    <LastSmoked />
                                 </PrivateRoute>
                             }
                         />

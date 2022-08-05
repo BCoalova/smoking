@@ -1,5 +1,8 @@
-import { IconButton, Link, Typography, useMediaQuery } from '@mui/material'
 import SmokeFreeIcon from '@mui/icons-material/SmokeFree'
+import IconButton from '@mui/material/IconButton'
+import Link from '@mui/material/Link'
+import Typography from '@mui/material/Typography'
+import useMediaQuery from '@mui/material/useMediaQuery'
 
 export default function NavBrand() {
     const matches = useMediaQuery('(min-width:600px)')

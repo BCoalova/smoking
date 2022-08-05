@@ -4,6 +4,9 @@ import { grey } from '@mui/material/colors'
 const themeLight = createTheme({
     palette: {
         mode: 'light',
+        background: {
+            paper: 'hsl(29, 70%, 96%)',
+        },
         primary: {
             main: 'hsl(216, 94%, 51%)',
         },
@@ -29,7 +32,7 @@ const themeDark = createTheme({
             main: grey[200],
         },
         background: {
-            paper: '#2f2f2f',
+            paper: 'hsl(216, 20%, 12%)',
         },
         text: {
             basic: 'hsl(0, 0%, 90%)',

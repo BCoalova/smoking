@@ -1,5 +1,10 @@
 import LogoutIcon from '@mui/icons-material/Logout'
-import { Box, Button, Paper, Snackbar, Stack, Typography } from '@mui/material'
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import Paper from '@mui/material/Paper'
+import Snackbar from '@mui/material/Snackbar'
+import Stack from '@mui/material/Stack'
+import Typography from '@mui/material/Typography'
 import { useState } from 'react'
 import { useGlobalContext } from '../context/GlobalContext'
 
@@ -21,7 +26,7 @@ export default function Profile() {
     }
 
     return (
-        <Paper component={Stack} my={4} py={2} px={4} gap={2} elevation={2}>
+        <Paper component={Stack} my={10} py={2} px={4} gap={2} elevation={2}>
             <Typography variant='h4' fontWeight={900}>
                 Perfil
             </Typography>

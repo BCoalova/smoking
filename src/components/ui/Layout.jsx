@@ -1,5 +1,7 @@
-import { Container, Paper } from '@mui/material'
+import Container from '@mui/material/Container'
+import Paper from '@mui/material/Paper'
 import { useGlobalContext } from '../../context/GlobalContext'
+import BottomNav from './BottomNav'
 import Nav from './Nav'
 
 const layoutStyles = {
@@ -18,6 +20,7 @@ function Layout({ children }) {
             <Container maxWidth={currentUser ? 'sm' : ''} disableGutters={!currentUser}>
                 {children}
             </Container>
+            {currentUser && <BottomNav />}
         </Paper>
     )
 }
