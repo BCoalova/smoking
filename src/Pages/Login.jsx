@@ -52,20 +52,31 @@ export default function Login() {
                     alignItems='center'
                     justifyContent='center'
                     gap={1}
-                    flex='50%'
+                    flex='65vh'
                     sx={{ bgcolor: 'secondary.main' }}
-                    minHeight={matches ? '100vh' : '50vh'}
+                    minHeight={matches ? '100vh' : '65vh'}
                     width='100%'
+                    p={2}
                 >
                     <Typography textAlign='center' variant='h1' fontWeight={900}>
                         No Smoking
                     </Typography>
                     <Stack alignItems='center'>
-                        <Typography variant='h4'>Contador de cigarrillos diarios</Typography>
-                        <Typography variant='h4'>con objetivos</Typography>
+                        <Typography variant='h4' textAlign='center'>
+                            Contador de cigarrillos diarios
+                        </Typography>
+                        <Typography variant='h4' textAlign='center'>
+                            con objetivos
+                        </Typography>
                     </Stack>
                 </Stack>
-                <Stack flex='50%' minHeight={matches ? '100vh' : '50vh'} width='100%' alignItems='center' justifyContent='center'>
+                <Stack
+                    flex='35vh'
+                    minHeight={matches ? '100vh' : '35vh'}
+                    width='100%'
+                    alignItems='center'
+                    justifyContent='center'
+                >
                     <Stack>
                         <Button variant='outlined' onClick={loginHandler} endIcon={<GoogleIcon />}>
                             Login with
