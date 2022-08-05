@@ -42,7 +42,7 @@ export default function Objective() {
                         color='primary'
                         variant='contained'
                         label={viewing && userData.data[viewing].dayObjective}
-                        elevation={1}
+                        elevation={3}
                     />
                     <IconButton onClick={handleEditBtn} color='primary' title={showEditObjective ? 'edit offf' : 'edit on'}>
                         {showEditObjective ? <EditOffIcon /> : <EditIcon />}

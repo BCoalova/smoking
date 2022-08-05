@@ -1,7 +1,5 @@
 export default function chartjsConverter(arr, isLight, amount = 0) {
     let lastSevenDays = arr
-    // eslint-disable-next-line no-undef
-    console.log(lastSevenDays)
     if (amount && arr.length > amount) {
         lastSevenDays = arr.slice(arr.length - amount)
     }

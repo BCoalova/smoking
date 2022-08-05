@@ -16,6 +16,7 @@ const themeLight = createTheme({
         text: {
             basic: 'hsl(0, 0%, 20%)',
         },
+        divider: 'hsl(220, 11%, 16%)',
     },
 })
 
@@ -37,6 +38,7 @@ const themeDark = createTheme({
         text: {
             basic: 'hsl(0, 0%, 90%)',
         },
+        divider: 'hsl(216, 13%, 62%)',
     },
 })
 

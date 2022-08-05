@@ -26,7 +26,7 @@ export default function Profile() {
     }
 
     return (
-        <Paper component={Stack} my={10} py={2} px={4} gap={2} elevation={2}>
+        <Paper component={Stack} my={10} py={2} px={4} gap={2} elevation={3}>
             <Typography variant='h4' fontWeight={900}>
                 Perfil
             </Typography>

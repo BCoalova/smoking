@@ -31,7 +31,7 @@ export default function BottomNav() {
     const matches = useMediaQuery('(min-width:700px)')
 
     return (
-        <AppBar position='fixed' sx={{ top: 'auto', bottom: 0 }}>
+        <AppBar color='text' position='fixed' sx={{ top: 'auto', bottom: 0 }}>
             <Toolbar sx={{ alignItems: 'center' }} p={0}>
                 {pathname === '/' && (
                     <StyledFab color='primary' aria-label='add' onClick={() => addCigarette(userData.data[viewing])}>
@@ -56,7 +56,7 @@ export default function BottomNav() {
                                         key={el.id}
                                         label={matches ? el.title : ''}
                                         id={el.id}
-                                        to={el.path ? el.path : null}
+                                        to={el.path}
                                         icon={el.Icon(currentUser)}
                                     />
                                 ),

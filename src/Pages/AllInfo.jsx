@@ -13,6 +13,9 @@ import { userDataToArr } from '../helpers/userDataToArr'
 import useBoolean from '../hooks/useBoolean'
 
 const StyledPaper = styled(Paper)(({ theme }) => {
+    // eslint-disable-next-line no-undef
+    console.log('theme => ', theme)
+
     return {
         'scrollbar-color': { background: theme.palette.primary.light },
         'scrollbar-width': 'thin',

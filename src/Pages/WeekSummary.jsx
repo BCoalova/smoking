@@ -102,7 +102,7 @@ export default function WeekSummary() {
         data && (
             <>
                 <Paper component={Stack} my={10} gap={4}>
-                    <AppBar sx={{ position: 'relative', borderBottom: 1, borderColor: 'primary.main' }} elevation={1}>
+                    <AppBar sx={{ position: 'relative', borderBottom: 1, borderColor: 'primary.main' }} elevation={3}>
                         <Tabs
                             value={value}
                             onChange={handleChange}
