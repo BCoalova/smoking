@@ -13,7 +13,14 @@ export default function LastSmoked() {
 
     return (
         <Stack component={Paper} alignItems='center' py={4} px={2} gap={4} my={10}>
-            <Typography variant='h4' fontWeight={800}>
+            hola
+            <IconButton onClick={handleStart}>handleStart</IconButton>
+            <IconButton onClick={handleReset}>handleReset</IconButton>
+            {
+                // eslint-disable-next-line no-undef
+                console.log('time => ', time)
+            }
+            {/* <Typography variant='h4' fontWeight={800}>
                 {time.timeNow
                     ? `${time.hours} : ${time.minutes} : ${time.seconds}.${time.hundredthsOfASeconds}`
                     : '00 : 00 : 00.00'}
@@ -33,7 +40,7 @@ export default function LastSmoked() {
                     <StopCircleIcon />
                 </IconButton>
             </Stack>
-            {isActive && !isPaused && <Alert severity='warning'>Si salís de está sección el cronometro se reseteará.</Alert>}
+            {isActive && !isPaused && <Alert severity='warning'>Si salís de está sección el cronometro se reseteará.</Alert>} */}
         </Stack>
     )
 }

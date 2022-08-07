@@ -14,7 +14,7 @@ import useBoolean from '../hooks/useBoolean'
 
 const StyledPaper = styled(Paper)(({ theme }) => {
     // eslint-disable-next-line no-undef
-    console.log('theme => ', theme)
+    // console.log('theme => ', theme)s
 
     return {
         'scrollbar-color': { background: theme.palette.primary.light },

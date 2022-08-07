@@ -18,6 +18,29 @@ const themeLight = createTheme({
         },
         divider: 'hsl(220, 11%, 16%)',
     },
+    chartOpt: {
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        color: 'hsl(0, 0%, 20%)',
+                    },
+                },
+            },
+            scales: {
+                yAxis: {
+                    min: 0,
+                    ticks: { color: 'hsl(0, 0%, 20%)' },
+                },
+                xAxis: {
+                    min: 0,
+                    ticks: { color: 'hsl(0, 0%, 20%)' },
+                },
+            },
+        },
+    },
 })
 
 const themeDark = createTheme({
@@ -39,6 +62,31 @@ const themeDark = createTheme({
             basic: 'hsl(0, 0%, 90%)',
         },
         divider: 'hsl(216, 13%, 62%)',
+    },
+    chartOpt: {
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        color: 'hsl(0, 0%, 90%)',
+                        padding: 20,
+                        // margin: 40,
+                    },
+                },
+            },
+            scales: {
+                yAxis: {
+                    min: 0,
+                    ticks: { color: 'hsl(0, 0%, 90%)' },
+                },
+                xAxis: {
+                    min: 0,
+                    ticks: { color: 'hsl(0, 0%, 90%)' },
+                },
+            },
+        },
     },
 })
 

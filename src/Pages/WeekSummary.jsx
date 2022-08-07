@@ -18,24 +18,7 @@ import { Bar, Line } from 'react-chartjs-2'
 import { useGlobalContext } from '../context/GlobalContext'
 import chartjsConverter from '../helpers/chartjsConverter'
 import { userDataToArrUntilToday } from '../helpers/userDataToArr'
-
-const options = {
-    responsive: true,
-    plugins: {
-        legend: {
-            position: 'top',
-        },
-        title: {
-            display: false,
-            text: 'Últimos días',
-        },
-    },
-    scales: {
-        yAxis: {
-            min: 0,
-        },
-    },
-}
+import { themeDark, themeLight } from '../styles/theme'
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend)
 
@@ -73,16 +56,16 @@ export default function WeekSummary() {
     const [dayCount, setDayCount] = useState(7)
     const [data, setData] = useState(null)
 
-    const handleChange = (event, newValue) => {
-        setValue(newValue)
-    }
-
     useEffect(() => {
         if (!userData) return
         if (!viewing) return
         let dataConverted = chartjsConverter(userDataToArrUntilToday(userData.data), isLight, dayCount)
         setData(dataConverted)
     }, [userData, isLight, viewing, dayCount])
+
+    const handleChange = (event, newValue) => {
+        setValue(newValue)
+    }
 
     const addOneDay = () => {
         let { labels } = chartjsConverter(userDataToArrUntilToday(userData.data), isLight)
@@ -118,10 +101,10 @@ export default function WeekSummary() {
                     </AppBar>
 
                     <TabPanel value={value} index={0}>
-                        <Line options={options} data={data} />
+                        <Line options={isLight ? themeLight.chartOpt.options : themeDark.chartOpt.options} data={data} />
                     </TabPanel>
                     <TabPanel value={value} index={1}>
-                        <Bar options={options} data={data} />
+                        <Bar options={isLight ? themeLight.chartOpt.options : themeDark.chartOpt.options} data={data} />
                     </TabPanel>
 
                     <Stack direction='row' flexWrap='wrap' gap={1} py={2} px={4}>

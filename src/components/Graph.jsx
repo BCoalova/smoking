@@ -2,21 +2,9 @@ import Paper from '@mui/material/Paper'
 import { BarElement, CategoryScale, Chart as ChartJS, LinearScale, Tooltip } from 'chart.js'
 import { Bar } from 'react-chartjs-2'
 import { useGlobalContext } from '../context/GlobalContext'
+import { themeDark, themeLight } from '../styles/theme'
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip)
-
-export const options = {
-    responsive: true,
-    /* plugins: {
-        legend: {
-            position: 'top',
-        },
-        title: {
-            display: false,
-            text: 'Diario',
-        },
-    }, */
-}
 
 export default function Graph() {
     const { viewing, userData, isLight } = useGlobalContext()
@@ -24,7 +12,7 @@ export default function Graph() {
     return (
         <Paper sx={{ flexGrow: 1, p: 2 }}>
             <Bar
-                options={options}
+                options={isLight ? themeLight.chartOpt.options : themeDark.chartOpt.options}
                 data={{
                     labels: [viewing],
                     datasets: [

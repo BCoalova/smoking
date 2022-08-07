@@ -7,7 +7,8 @@ import Tab from '@mui/material/Tab'
 import Tabs from '@mui/material/Tabs'
 import Toolbar from '@mui/material/Toolbar'
 import useMediaQuery from '@mui/material/useMediaQuery'
-import { NavLink, useLocation } from 'react-router-dom'
+import { useCallback, useEffect } from 'react'
+import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { useGlobalContext } from '../../context/GlobalContext'
 import { links } from '../constant/linkList'
 
@@ -30,6 +31,45 @@ export default function BottomNav() {
     const { addCigarette, userData, viewing, currentUser } = useGlobalContext()
     const matches = useMediaQuery('(min-width:700px)')
 
+    let navigate = useNavigate()
+
+    const goToPage = useCallback(
+        e => {
+            let targetKey = e.key.toLowerCase()
+
+            switch (targetKey) {
+                case 'i':
+                    if (pathname === '/') return
+                    navigate('/')
+                    break
+                case 's':
+                    if (pathname === '/week-summary') return
+                    navigate('/week-summary')
+                    break
+                case 'h':
+                    if (pathname === '/history') return
+                    navigate('/history')
+                    break
+                case 'p':
+                    if (pathname === '/profile') return
+                    navigate('/profile')
+                    break
+
+                default:
+                    break
+            }
+        },
+        [navigate, pathname],
+    )
+
+    useEffect(() => {
+        // eslint-disable-next-line no-undef
+        window.addEventListener('keydown', goToPage)
+
+        // eslint-disable-next-line no-undef
+        return () => window.removeEventListener('keydown', goToPage)
+    }, [goToPage])
+
     return (
         <AppBar color='text' position='fixed' sx={{ top: 'auto', bottom: 0 }}>
             <Toolbar sx={{ alignItems: 'center' }} p={0}>
@@ -45,7 +85,7 @@ export default function BottomNav() {
                         variant={/* matches ?  */ 'fullWidth' /*  : 'scrollable' */}
                         scrollButtons='auto'
                         centered={/* matches ?  */ true /*  : false */}
-                        value={links.find(el => pathname === el.path).id}
+                        value={links.find(el => pathname === el.path)?.id /*  || 999 */}
                         TabIndicatorProps={{ sx: { top: 0 } }}
                     >
                         {links.map(
