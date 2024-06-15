@@ -31,6 +31,9 @@ function RenderInputImp({ params, label, name }) {
             label={label}
             inputProps={{
                 ...params.inputProps,
+                // type: 'number',
+                pattern: '[0-9]*',
+                inputmode: 'numeric',
                 sx: {
                     textAlign: 'right',
                 },
