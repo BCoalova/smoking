@@ -1,5 +1,6 @@
 // import AvTimerIcon from '@mui/icons-material/AvTimer'
 import BarChartIcon from '@mui/icons-material/BarChart'
+import FitnessCenterIcon from '@mui/icons-material/FitnessCenter'
 import HistoryIcon from '@mui/icons-material/History'
 import HomeIcon from '@mui/icons-material/Home'
 import LogoutIcon from '@mui/icons-material/Logout'
@@ -26,6 +27,13 @@ export const links = [
         title: 'Histórico',
         Icon: () => <HistoryIcon />,
         path: '/history',
+    },
+    {
+        comp: 'NavLink',
+        onClick: fn => fn(),
+        title: 'CountDown',
+        Icon: () => <FitnessCenterIcon />,
+        path: '/exercise-timers',
     },
     /* {
         comp: 'NavLink',
