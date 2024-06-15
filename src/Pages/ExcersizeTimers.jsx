@@ -15,6 +15,7 @@ export default function ExcersizeTimers() {
     return (
         <Stack component={Paper} alignItems='center' py={4} px={2} gap={2} my={10}>
             <Stack gap={2}>
+                hola
                 {data.map(el => (
                     <Stack key={el.id} gap={1}>
                         <Typography pl={6}>{el.label}.</Typography>
