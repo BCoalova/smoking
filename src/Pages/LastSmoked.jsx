@@ -1,15 +1,15 @@
-import PauseCircleIcon from '@mui/icons-material/PauseCircle'
-import PlayCircleIcon from '@mui/icons-material/PlayCircle'
-import StopCircleIcon from '@mui/icons-material/StopCircle'
-import Alert from '@mui/material/Alert'
+// import PauseCircleIcon from '@mui/icons-material/PauseCircle'
+// import PlayCircleIcon from '@mui/icons-material/PlayCircle'
+// import StopCircleIcon from '@mui/icons-material/StopCircle'
+// import Alert from '@mui/material/Alert'
 import IconButton from '@mui/material/IconButton'
 import Paper from '@mui/material/Paper'
 import Stack from '@mui/material/Stack'
-import Typography from '@mui/material/Typography'
+// import Typography from '@mui/material/Typography'
 import useStopWatch from '../hooks/useStopWatch'
 
 export default function LastSmoked() {
-    const [time, handleStart, handlePauseResume, handleReset, isActive, isPaused] = useStopWatch()
+    const [time, handleStart /* handlePauseResume */, , handleReset /* isActive, isPaused */] = useStopWatch()
 
     return (
         <Stack component={Paper} alignItems='center' py={4} px={2} gap={4} my={10}>

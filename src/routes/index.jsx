@@ -10,6 +10,7 @@ import Profile from '../Pages/Profile'
 import WeekSummary from '../Pages/WeekSummary'
 import { themeDark, themeLight } from '../styles/theme'
 import PrivateRoute from './utils'
+import ExcersizeTimers from '../Pages/ExcersizeTimers'
 
 export default function App() {
     const { isLight } = useGlobalContext()
@@ -56,6 +57,14 @@ export default function App() {
                             element={
                                 <PrivateRoute>
                                     <LastSmoked />
+                                </PrivateRoute>
+                            }
+                        />
+                        <Route
+                            path='/exercise-timers'
+                            element={
+                                <PrivateRoute>
+                                    <ExcersizeTimers />
                                 </PrivateRoute>
                             }
                         />
