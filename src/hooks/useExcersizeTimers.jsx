@@ -94,7 +94,7 @@ export default function useExcersizeTimers() {
         if (countDownData.status === status.RUNNING && countDown === 3) {
             audioRef.current.play()
         } else if (countDownData.status === status.RUNNING && countDown > 3) {
-            audioRef.current.stop()
+            audioRef.current.pause()
         }
 
         if (countDown === 0 && countDownData.status !== status.RUNNING) return
