@@ -1,9 +1,13 @@
-import { useCallback, useState } from 'react'
-import { defaults /* , initialCountDown */ } from '../constants/excersizeCons'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { defaults /* , initialCountDown */, initialCountDownData, status } from '../constants/excersizeCons'
+import alarm from '../assets/alarm.mp3'
 
 export default function useExcersizeTimers() {
     const [data, setData] = useState(defaults)
-    // const [countDown, setCountDown] = useState(initialCountDown)
+    const [countDownData, setCountDownData] = useState(initialCountDownData)
+    const [countDown, setCountDown] = useState(0)
+
+    const intervalRef = useRef()
 
     const handleChange = useCallback((value, name, id) => {
         // eslint-disable-next-line no-undef
@@ -74,13 +78,76 @@ export default function useExcersizeTimers() {
     }, [])
 
     const start = useCallback(paramData => {
-        // eslint-disable-next-line no-undef
-        console.log('paramData => ', paramData)
+        setCountDownData(curr => {
+            const minutes = parseInt(paramData[curr.currentStep].minutes) * 60
+            const seconds = parseInt(paramData[curr.currentStep].seconds)
+
+            setCountDown(minutes + seconds)
+
+            return { ...curr, time: minutes + seconds, status: status.RUNNING, currentStep: 0 }
+        })
     }, [])
 
-    const stop = useCallback(() => {}, [])
+    useEffect(() => {
+        if (countDownData.status === status.RUNNING && countDown === 3) {
+            // eslint-disable-next-line no-undef
+            new Audio(alarm).play()
+        }
 
-    const reset = useCallback(() => {}, [])
+        if (countDown === 0 && countDownData.status !== status.RUNNING) return
 
-    return [data, handleChange, handleMoveUp, handleMoveDown, start, stop, reset]
+        if (countDown === 0 && countDownData.status === status.RUNNING) {
+            if (countDownData.currentStep === 2) {
+                setCountDownData(curr => {
+                    return { ...curr, status: status.READY, currentStep: 0 }
+                })
+                // eslint-disable-next-line no-undef
+                clearInterval(intervalRef.current)
+                setCountDown(0)
+                return
+            }
+            // eslint-disable-next-line no-undef
+            setTimeout(() => {
+                // eslint-disable-next-line no-undef
+                clearInterval(intervalRef.current)
+                setCountDownData(curr => {
+                    const minutes = parseInt(data[curr.currentStep + 1].minutes) * 60
+                    const seconds = parseInt(data[curr.currentStep + 1].seconds)
+
+                    setCountDown(minutes + seconds)
+
+                    return { ...curr, time: minutes + seconds, status: status.RUNNING, currentStep: curr.currentStep + 1 }
+                })
+            }, 1000)
+        }
+
+        // eslint-disable-next-line no-undef
+        intervalRef.current = setInterval(() => {
+            setCountDown(prev => prev - 1)
+        }, 1000)
+
+        // eslint-disable-next-line no-undef
+        return () => clearInterval(intervalRef.current)
+    }, [countDown, countDownData, data])
+
+    const stop = useCallback(() => {
+        setCountDownData(curr => {
+            return { ...curr, status: status.READY, currentStep: 0 }
+        })
+
+        setCountDown(0)
+    }, [])
+
+    const reset = useCallback(() => {
+        setCountDownData(curr => {
+            const minutes = parseInt(data[0].minutes) * 60
+            const seconds = parseInt(data[0].seconds)
+
+            setCountDown(minutes + seconds)
+
+            return { ...curr, time: minutes + seconds, status: status.RUNNING, currentStep: 0 }
+        })
+    }, [data])
+
+    return [data, handleChange, handleMoveUp, handleMoveDown, start, stop, reset, countDown, countDownData]
 }

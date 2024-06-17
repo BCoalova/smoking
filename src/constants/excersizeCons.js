@@ -34,10 +34,10 @@ const defaults = Object.freeze([
     },
 ])
 
-const initialCountDown = Object.freeze({
+const initialCountDownData = Object.freeze({
     status: status.READY,
     currentStep: 0,
     time: 0,
 })
 
-export { types, defaults, initialCountDown, labels, status }
+export { types, defaults, initialCountDownData, labels, status }
