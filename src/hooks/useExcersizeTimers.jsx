@@ -93,8 +93,8 @@ export default function useExcersizeTimers() {
     useEffect(() => {
         if (countDownData.status === status.RUNNING && countDown === 3) {
             audioRef.current.play()
-        } else if (countDownData.status === status.RUNNING && countDown === 0) {
-            audioRef.current.pause()
+        } else if (countDownData.status === status.RUNNING && countDown > 3) {
+            audioRef.current.stop()
         }
 
         if (countDown === 0 && countDownData.status !== status.RUNNING) return
