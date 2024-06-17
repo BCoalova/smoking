@@ -6,9 +6,13 @@ export default function useExcersizeTimers() {
     // const [countDown, setCountDown] = useState(initialCountDown)
 
     const handleChange = useCallback((value, name, id) => {
+        // eslint-disable-next-line no-undef
+        // console.log('value, name, id => ', value, name, id)
         setData(prev => {
             return prev.map(el => {
                 if (el.id === id) {
+                    // eslint-disable-next-line no-undef
+                    console.log('value, name, id => ', value, name, id, el)
                     return {
                         ...el,
                         [name]: value,
@@ -69,7 +73,10 @@ export default function useExcersizeTimers() {
         })
     }, [])
 
-    const start = useCallback(() => {}, [])
+    const start = useCallback(paramData => {
+        // eslint-disable-next-line no-undef
+        console.log('paramData => ', paramData)
+    }, [])
 
     const stop = useCallback(() => {}, [])
 

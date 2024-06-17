@@ -8,7 +8,7 @@ const defaults = Object.freeze([
     {
         id: uuidv4(),
         minutes: '00',
-        seconds: '03',
+        seconds: '05',
         order: 0,
         label: labels.PREP,
         type: types.DEFAULT,

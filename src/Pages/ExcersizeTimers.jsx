@@ -1,59 +1,50 @@
-import AddCircleIcon from '@mui/icons-material/AddCircle'
-import MoveDownIcon from '@mui/icons-material/MoveDown'
-import MoveUpIcon from '@mui/icons-material/MoveUp'
 import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite'
 import RestartAltIcon from '@mui/icons-material/RestartAlt'
 import StopCircleIcon from '@mui/icons-material/StopCircle'
-import { Box, IconButton, Paper, Stack, TextField, Typography } from '@mui/material'
-import { types } from '../constants/excersizeCons'
+import { IconButton, Paper, Stack, Typography } from '@mui/material'
+import SecMinSelect from '../components/ui/SecMinSelect'
 import useExcersizeTimers from '../hooks/useExcersizeTimers'
-import SecMinAutocomplete from '../components/ui/SecMinAutocomplete'
 
 export default function ExcersizeTimers() {
-    const [data, handleChange, handleMoveUp, handleMoveDown /* start, stop, reset */] = useExcersizeTimers()
+    const [data, handleChange /* handleMoveUp */ /* handleMoveDown */, , , start /* stop */ /* reset */, ,] = useExcersizeTimers()
 
     return (
         <Stack component={Paper} alignItems='center' py={4} px={2} gap={2} my={10}>
             <Stack gap={2}>
-                hola
                 {data.map(el => (
                     <Stack key={el.id} gap={1}>
                         <Typography pl={6}>{el.label}.</Typography>
                         <Stack direction='row' alignItems='center' gap={1} order={el.order}>
-                            {el.type === types.CUSTOM && el.order > 4 ? (
-                                <IconButton onClick={() => handleMoveUp(el.id)}>
-                                    <MoveUpIcon />
-                                </IconButton>
-                            ) : (
-                                <Box sx={{ width: 40 }} />
-                            )}
-                            <SecMinAutocomplete
-                                value={el.minutes}
-                                onChange={(value, name) => handleChange(value, name, el.id)}
+                            <SecMinSelect
                                 label='Min'
                                 name='minutes'
+                                value={el.minutes}
+                                onChange={value => handleChange(value, 'minutes', el.id)}
+                                type={el.label}
                             />
                             :
-                            <SecMinAutocomplete
-                                value={el.seconds}
-                                onChange={(value, name) => handleChange(value, name, el.id)}
+                            <SecMinSelect
                                 label='Sec'
                                 name='seconds'
+                                value={el.seconds}
+                                onChange={value => handleChange(value, 'seconds', el.id)}
+                                type={el.label}
                             />
-                            {el.type === types.CUSTOM && el.order < data.length - 1 && (
-                                <IconButton onClick={() => handleMoveDown(el.id)}>
-                                    <MoveDownIcon />
-                                </IconButton>
-                            )}
                         </Stack>
                     </Stack>
                 ))}
             </Stack>
             <Stack direction='row' gap={1}>
-                <IconButton>
+                {/* <IconButton>
                     <AddCircleIcon />
-                </IconButton>
-                <IconButton>
+                </IconButton> */}
+                <IconButton
+                    onClick={() => {
+                        // eslint-disable-next-line no-undef
+                        console.log('data => ', data)
+                        start(data)
+                    }}
+                >
                     <PlayCircleFilledWhiteIcon />
                 </IconButton>
                 <IconButton>
@@ -66,3 +57,18 @@ export default function ExcersizeTimers() {
         </Stack>
     )
 }
+
+/* 
+{el.type === types.CUSTOM && el.order < data.length - 1 && (
+                                <IconButton onClick={() => handleMoveDown(el.id)}>
+                                    <MoveDownIcon />
+                                </IconButton>
+                            )}
+{el.type === types.CUSTOM && el.order > 4 ? (
+                                <IconButton onClick={() => handleMoveUp(el.id)}>
+                                    <MoveUpIcon />
+                                </IconButton>
+                            ) : (
+                                <Box sx={{ width: 40 }} />
+                            )}
+*/
