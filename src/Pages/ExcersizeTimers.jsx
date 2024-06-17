@@ -7,8 +7,10 @@ import useExcersizeTimers from '../hooks/useExcersizeTimers'
 import { useState } from 'react'
 import { status } from '../constants/excersizeCons'
 import PauseCircleIcon from '@mui/icons-material/PauseCircle'
+import useWakeLock from '../hooks/useWakeLock'
 
 export default function ExcersizeTimers() {
+    useWakeLock()
     const [value, setValue] = useState(0)
     const [data, handleChange /* handleMoveUp */ /* handleMoveDown */, , , start, stop, reset, countDown, countDownData] =
         useExcersizeTimers()
