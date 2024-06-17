@@ -5,8 +5,8 @@ import { AppBar, Box, IconButton, Paper, Stack, Tab, Tabs, Typography } from '@m
 import SecMinSelect from '../components/ui/SecMinSelect'
 import useExcersizeTimers from '../hooks/useExcersizeTimers'
 import { useState } from 'react'
-import { status } from '../constants/excersizeCons'
-import PauseCircleIcon from '@mui/icons-material/PauseCircle'
+// import { status } from '../constants/excersizeCons'
+// import PauseCircleIcon from '@mui/icons-material/PauseCircle'
 import useWakeLock from '../hooks/useWakeLock'
 
 export default function ExcersizeTimers() {
@@ -64,15 +64,15 @@ export default function ExcersizeTimers() {
                 {value === 1 && (
                     <Stack style={{ pb: 2 }} gap={3}>
                         <Stack direction='row' gap={1}>
-                            {countDownData.status === status.RUNNING ? (
+                            {/* {countDownData.status === status.RUNNING ? (
                                 <IconButton size='large'>
                                     <PauseCircleIcon sx={{ fontSize: 50 }} />
                                 </IconButton>
                             ) : (
-                                <IconButton size='large' onClick={() => start(data)}>
-                                    <PlayCircleFilledWhiteIcon sx={{ fontSize: 50 }} />
-                                </IconButton>
-                            )}
+                            )} */}
+                            <IconButton size='large' onClick={() => start(data)}>
+                                <PlayCircleFilledWhiteIcon sx={{ fontSize: 50 }} />
+                            </IconButton>
                             <IconButton size='large' onClick={stop}>
                                 <StopCircleIcon sx={{ fontSize: 50 }} />
                             </IconButton>
