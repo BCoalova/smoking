@@ -1,8 +1,10 @@
+/* eslint-disable no-undef */
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { defaults /* , initialCountDown */, initialCountDownData, status } from '../constants/excersizeCons'
 import alarm from '../assets/alarm.mp3'
 
 export default function useExcersizeTimers() {
+    const audioRef = useRef(new Audio(alarm))
     const [data, setData] = useState(defaults)
     const [countDownData, setCountDownData] = useState(initialCountDownData)
     const [countDown, setCountDown] = useState(0)
@@ -90,8 +92,9 @@ export default function useExcersizeTimers() {
 
     useEffect(() => {
         if (countDownData.status === status.RUNNING && countDown === 3) {
-            // eslint-disable-next-line no-undef
-            new Audio(alarm).play()
+            audioRef.current.play()
+        } else if (countDownData.status === status.RUNNING && countDown === 0) {
+            audioRef.current.pause()
         }
 
         if (countDown === 0 && countDownData.status !== status.RUNNING) return
@@ -101,12 +104,11 @@ export default function useExcersizeTimers() {
                 setCountDownData(curr => {
                     return { ...curr, status: status.READY, currentStep: 0 }
                 })
-                // eslint-disable-next-line no-undef
                 clearInterval(intervalRef.current)
                 setCountDown(0)
                 return
             }
-            // eslint-disable-next-line no-undef
+
             setTimeout(() => {
                 // eslint-disable-next-line no-undef
                 clearInterval(intervalRef.current)
@@ -121,12 +123,10 @@ export default function useExcersizeTimers() {
             }, 1000)
         }
 
-        // eslint-disable-next-line no-undef
         intervalRef.current = setInterval(() => {
             setCountDown(prev => prev - 1)
         }, 1000)
 
-        // eslint-disable-next-line no-undef
         return () => clearInterval(intervalRef.current)
     }, [countDown, countDownData, data])
 
